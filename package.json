@@ -1,11 +1,10 @@
 {
   "name": "expense-tracking-app",
-  "type": "module",
   "version": "1.0.0",
-  "description": "This app help users to track where all their money go. It has to allow them to record their daily expenses by categories(Groceries, Facilities, etc ..) and generate weekly report and monthly report.",
+  "description": "This app help users to track where all their money go. It allows them to record their daily expenses by categories(Groceries, Facilities, etc ..) and generate weekly report and monthly report.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,11 +18,15 @@
   },
   "homepage": "https://github.com/SolvIT-Africa-Bootcamp-cohort2/Expense-tracking-app#readme",
   "dependencies": {
+    "@hapi/joi": "^17.1.1",
     "bcrypt": "^5.0.1",
-    "chalk": "^5.0.0",
+    "chalk": "^4.1.0",
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "json-web-token": "^3.2.0",
     "mongoose": "^6.2.3"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.0"
   }
 }
