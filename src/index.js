@@ -4,7 +4,10 @@ const express = require("express");
 const chalk = require("chalk");
 const mongoose = require("mongoose")
 const cors = require("cors")
+
 const userRouter = require("./routes/user")
+const expenseRouter = require("./routes/expense")
+
 const log = console.log;
 const PORT = process.env.PORT || 3000;
 
@@ -12,7 +15,6 @@ const app = express();
 const connectDB = async () => {
         await mongoose.connect(process.env.DB_Host, { useNewUrlParser: true, useUnifiedTopology: true })
         .then(()=>{
-
                  log(chalk.blue("DB connected successfully"))
                 //middlewares
                 app.use(cors({
@@ -24,6 +26,7 @@ const connectDB = async () => {
                 app.set("port",PORT)
 
                 app.use("/user",userRouter)
+                app.use("/expense",expenseRouter)
 
                 app.listen(PORT, () =>{
                     log(chalk.green("Server started"))
