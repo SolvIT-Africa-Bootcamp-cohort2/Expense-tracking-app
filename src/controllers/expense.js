@@ -1,4 +1,4 @@
-const Transaction = require("../models/Transaction");
+const {Transaction} = require("../models/Transaction");
 const chalk = require("chalk");
 const { description } = require("@hapi/joi/lib/base");
 
@@ -30,8 +30,9 @@ const addExpense = async (req,res, next) =>{
        description,amount,category, userId: req.user["id"], type:"expense"
    })
    newExpense.save();
-   res.status(201).send(newExpense)   
+   res.status(201).send({Message:"Expense added successfully"})   
   } catch (error) {
+      console.log(chalk.red(error))
       res.status(500).send({Message:"Error adding expense"})
   }
 }
