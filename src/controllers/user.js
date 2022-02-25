@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const User = require("../models/User");
+const {User} = require("../models/User");
 const chalk = require("chalk")
 const jwt  = require("jsonwebtoken")
 
@@ -25,7 +25,7 @@ const getOneUser = async (req,res, next) =>{
 
 const register = async (req,res, next )=>{
     try {
-        const {email, password, gender,username} = req.body;  
+        const {email, password, gender,username,phone} = req.body;  
         const userExists = await User.findOne({email:email});
         if(userExists){
             res.status(400).send({"Message":"Email already taken"})
@@ -36,14 +36,15 @@ const register = async (req,res, next )=>{
                 email ,
                 username,
                 password:hashedPassword,
-                gender 
+                phone,
+                gender
             })
 
             await newUser.save()
             res.status(201).send({Message:"user Registered Successfully"})
        }
     } catch (error) {
-        console.log(chalk.red(error)) 
+        console.log(chalk.red(error))
         res.status(500).send({Message:"Problem with the server"})
     }
 }
@@ -70,7 +71,6 @@ const updateUser = async(req,res,next) =>{
         console.log(err);
 	}
 }
-
 
 const login = async(req,res,next)=>{
         const user = await User.findOne({email: req.body.email})
