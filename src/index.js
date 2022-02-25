@@ -5,8 +5,9 @@ const chalk = require("chalk");
 const mongoose = require("mongoose")
 const cors = require("cors")
 
-const userRouter = require("./routes/user")
 const expenseRouter = require("./routes/expense")
+const incomeRouter = require("./routes/income")
+
 
 const log = console.log;
 const PORT = process.env.PORT || 3000;
@@ -25,8 +26,8 @@ const connectDB = async () => {
 
                 app.set("port",PORT)
 
-                app.use("/user",userRouter)
                 app.use("/expense",expenseRouter)
+                app.use("/income",incomeRouter)
 
                 app.listen(PORT, () =>{
                     log(chalk.green("Server started"))

@@ -1,10 +1,10 @@
 const Transaction = require("../models/Transaction");
-const chalk = require("chalk")
-
+const chalk = require("chalk");
+const { description } = require("@hapi/joi/lib/base");
 
 const getExpenses = async (req,res, next) =>{
     try {
-        const expenses = await Transaction.find({});
+        const expenses = await Transaction.find({type:"expense",userId: req.user["id"]});
         res.status(200).send(expenses)
     } catch (error) {
         console.log(chalk.red(error));
@@ -24,10 +24,10 @@ const getOneExpense = async (req,res, next) =>{
 
 const addExpense = async (req,res, next) =>{
   try {
-    const {title, amount , category} = req.body;
+    const {description, amount , category} = req.body;
     
    const newExpense = new Transaction({
-       title,amount,category, userId: req.user["id"]
+       description,amount,category, userId: req.user["id"], type:"expense"
    })
    newExpense.save();
    res.status(201).send(newExpense)   
@@ -40,9 +40,9 @@ const updateExpense = async(req,res,next) =>{
 	try {
         let expense = await Transaction.findOne({_id: req.params.id})
         if (expense) {
-            let {title, amount, category} = req.body;
-            if (title) {
-                expense.title = title
+            let {description, amount, category} = req.body;
+            if (description) {
+                expense.description = description
             }
             if(amount){
                expense.amount = amount;
@@ -61,9 +61,21 @@ const updateExpense = async(req,res,next) =>{
 	}   
 }
 
+const deleteExpense = async(req,res, next) =>{
+        try {
+                await Transaction.deleteOne({ _id: req.params.id })
+                res.status(202).send("Expense Deleted Successfully")
+        } catch {
+            res.status(404).send({ error: "This Expense doesn't exist!" })
+        }    
+}
+
+
 module.exports = {
     getExpenses,
     getOneExpense,
-    addExpense
+    addExpense,
+    updateExpense,
+    deleteExpense
 }
 
