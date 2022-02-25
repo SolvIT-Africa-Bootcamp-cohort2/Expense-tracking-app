@@ -28,7 +28,6 @@ const connectDB = async () => {
                 app.listen(PORT, () =>{
                     log(chalk.green("Server started"))
                   })
-
         })
             .catch(function (error) {
                 log(chalk.red(`Unable to connect to the Mongo db  ${error} `));
