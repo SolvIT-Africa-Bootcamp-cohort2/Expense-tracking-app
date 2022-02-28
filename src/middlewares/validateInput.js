@@ -1,5 +1,5 @@
 // validateMiddleware
-function validateInput (validator) {
+exports.validateInput = (validator) =>{
     return (req, res, next) => {
       const { error } = validator(req.body)
       if (error) {
@@ -9,4 +9,3 @@ function validateInput (validator) {
     }
   }
 
-module.exports=  {validateInput}

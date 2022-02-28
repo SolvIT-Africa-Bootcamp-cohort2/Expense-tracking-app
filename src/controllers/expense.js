@@ -1,6 +1,5 @@
 const {Transaction} = require("../models/Transaction");
 const chalk = require("chalk");
-const { description } = require("@hapi/joi/lib/base");
 
 const getExpenses = async (req,res, next) =>{
     try {
@@ -22,6 +21,11 @@ const getOneExpense = async (req,res, next) =>{
     }
 }
 
+const getExpenseFromDate = async(req,res,next) =>{
+    const {from, to } =req.params;
+    res.send({from:from, to: to})
+}
+
 const addExpense = async (req,res, next) =>{
   try {
     const {description, amount , category} = req.body;
@@ -30,7 +34,7 @@ const addExpense = async (req,res, next) =>{
        description,amount,category, userId: req.user["id"], type:"expense"
    })
    newExpense.save();
-   res.status(201).send({Message:"Expense added successfully"})   
+   res.status(201).send({Message:"Expense added csuccessfully"})   
   } catch (error) {
       console.log(chalk.red(error))
       res.status(500).send({Message:"Error adding expense"})
@@ -71,10 +75,10 @@ const deleteExpense = async(req,res, next) =>{
         }    
 }
 
-
 module.exports = {
     getExpenses,
     getOneExpense,
+    getExpenseFromDate,
     addExpense,
     updateExpense,
     deleteExpense
