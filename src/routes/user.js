@@ -3,7 +3,8 @@ const router = express.Router();
 
 const {validateInput} = require("../middlewares/validateInput")
 const {login,register,getUsers,getOneUser,updateUser} = require("../controllers/user.js")
-const {validateUser} = require("../models/User")
+const {validateUser,validateUserLogin} = require("../models/User")
+
 router.get("/",getUsers)
 
 router.get("/:id",getOneUser)
@@ -16,6 +17,6 @@ router.route("/register")
        })
       .post(validateInput(validateUser), register)
 
-router.post("/login",login)
+router.post("/login",validateInput(validateUserLogin), login)
 
 module.exports = router;
