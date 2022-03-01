@@ -11,7 +11,7 @@ function register() {
       <div className="form-main-container">
         <img src={require("../../assets/logo.png")} alt="logo" />
         <div className="form-container">
-          <p>Register</p>
+          <p>REGISTER</p>
           <form method="post">
             <div className="form-group">
               <label>Name</label>

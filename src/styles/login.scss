@@ -49,6 +49,9 @@
       }
 
       form {
+        input {
+          background-color: $darkWhite;
+        }
         label {
           margin: 10px 0px;
           font-weight: 600;
