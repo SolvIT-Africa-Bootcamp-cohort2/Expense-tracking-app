@@ -1,4 +1,4 @@
-const {Transaction} = require("../models/Transaction");
+const {Transaction} = require("../models/Transaction").default;
 const chalk = require("chalk");
 
 const getExpenses = async (req,res, next) =>{

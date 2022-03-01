@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
-const Joi = require("@hapi/joi")
+import { Schema, model } from "mongoose";
+import { object, string, number } from "@hapi/joi";
 
-const schema = mongoose.Schema({
+const schema = Schema({
     email: {type:String, required:[true,"Email is required"]},
     phone:{type:Number, length:12},
     username:{type:String, required:[true,"Username is required"]},
@@ -11,28 +11,29 @@ const schema = mongoose.Schema({
     versionKey:false
 })
   
-const User = mongoose.model("User",schema);
+const User = model("User",schema);
 
 const validateUser = (user) => {
-    const schema = Joi.object({
-        email:Joi.string().email().required(),
-        phone:Joi.number().min(12).required(),
-        username: Joi.string().required(),
-        password:Joi.string().min(8).required(),
-        gender: Joi.string().required()
+    const schema = object({
+        email:string().email().required(),
+        phone:number().min(12).required(),
+        username: string().required(),
+        password:string().min(8).required(),
+        gender: string().required()
     })
   
     return schema.validate(user)
   }
 
 const validateUserLogin = (user)=>{
-    const schema = Joi.object({
-        email:Joi.string().email().required(),
-        password:Joi.string().required(),
+    const schema = object({
+        email:string().email().required(),
+        password:string().required(),
     })
     return schema.validate(user)
 }
-  module.exports ={
+
+  export default{
       User,
       validateUser,
       validateUserLogin

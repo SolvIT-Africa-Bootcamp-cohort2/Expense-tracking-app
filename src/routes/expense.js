@@ -3,9 +3,8 @@ const router = express.Router();
 
 const { verifyToken } = require("../middlewares/verifyToken");
 const {validateInput} = require("../middlewares/validateInput")
-const {validateTransaction} = require("../models/Transaction")
+const {validateTransaction} = require("../models/Transaction").default
 const {getExpenses , getOneExpense, getExpenseFromDate, addExpense,deleteExpense, updateExpense} = require("../controllers/expense.js");
-const app = require("..");
 
 router.all("/*",verifyToken)
 

@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
-const Joi = require("@hapi/joi")
+import { Schema, model } from "mongoose";
+import { object, number, string } from "@hapi/joi";
 
-const schema = mongoose.Schema({
+const schema = Schema({
     description: {type:String, required:[true,"Expense Description is required"]},
     amount:{type: Number, required: true},
     category:{type:String, required:true},
@@ -13,18 +13,18 @@ const schema = mongoose.Schema({
 })
 
 
-const Transaction = mongoose.model("Transaction",schema);
+const Transaction = model("Transaction",schema);
 
 const validateTransaction = (transaction) =>{
-    const schema = Joi.object({
-        amount: Joi.number().required(),
-        description: Joi.string().required(),
-        category:Joi.string().required()
+    const schema = object({
+        amount: number().required(),
+        description: string().required(),
+        category:string().required()
     })
     return schema.validate(transaction);
 }
 
-module.exports = {
+export default {
     Transaction,
     validateTransaction
 }
