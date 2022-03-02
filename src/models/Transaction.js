@@ -7,7 +7,7 @@ const schema = mongoose.Schema({
     category:{type:String, required:true},
     type:{type:String, required:true},
     userId:{type: String, required:true},
-    created_at: {type: Date, default: new Date().toISOString().slice(0,10)}
+    created_at: {type: Date, default: Date.now()}
 },{
     versionKey:false
 })

@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const {User} = require("../models/User");
+const {User} = require("../models/User").default;
 const chalk = require("chalk")
 const jwt  = require("jsonwebtoken")
 
@@ -28,7 +28,7 @@ const register = async (req,res, next )=>{
         const {email, password, gender,username,phone} = req.body;  
         const userExists = await User.findOne({email:email});
         if(userExists){
-            res.status(400).send({"Message":"Email already taken"})
+            res.status(400).send({"Message":"Email already exists"})
         } 
         else{
             const hashedPassword = await bcrypt.hash(password,10)
