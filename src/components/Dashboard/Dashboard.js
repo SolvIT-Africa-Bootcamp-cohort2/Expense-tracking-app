@@ -1,7 +1,18 @@
 import React from "react";
+import Contents from "./Contents";
+import Sidebar from "./Sidebar";
+
+import "../../styles/dashboard.scss";
+import TopBar from "./TopBar/TopBar";
 
 function Dashboard() {
-  return <div>Dashboard</div>;
+  return (
+    <div className="dashboard-main-container">
+      <TopBar />
+      <Sidebar />
+      <Contents />
+    </div>
+  );
 }
 
 export default Dashboard;
