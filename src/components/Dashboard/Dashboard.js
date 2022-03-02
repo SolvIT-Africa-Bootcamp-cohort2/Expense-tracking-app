@@ -1,5 +1,5 @@
 import React from "react";
-import Contents from "./Contents";
+import Contents from "./Contents/Contents";
 import Sidebar from "./Sidebar";
 
 import "../../styles/dashboard.scss";

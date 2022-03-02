@@ -1,0 +1,158 @@
+@import "fonts";
+@import "colors";
+@import "partials";
+
+.header {
+  border-bottom: 1px solid $darkGray;
+  padding: 10px 15px;
+  @include flex-space;
+  .filtering {
+    @include flex-center;
+    .date-filter-main-container {
+      margin-right: 10px;
+
+      @include flex-center;
+    }
+
+    .filter-main-container {
+      @include flex-center;
+      div {
+        &:first-child {
+          background-color: $lightYellow;
+          padding: 5px 1rem;
+          border-radius: 5px;
+          font-size: 14px;
+        }
+        &:last-child {
+          margin-left: 10px;
+          background-color: $darkGray2;
+          padding: 5px;
+          border-radius: 5px;
+
+          select {
+            background-color: transparent;
+            border: none;
+            width: 100%;
+            border-radius: 5px;
+            outline: none;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.charts-main-container {
+  border-right: 1px solid #ccc;
+  height: 100%;
+  padding-right: 15px;
+
+  .account-balance-container {
+    background-color: $darkGray2;
+    padding: 2rem;
+    border-radius: 10px;
+    @include flex-center-column;
+
+    h2 {
+      color: $blue;
+    }
+    span {
+      color: $textGray;
+      font-size: 12px;
+    }
+  }
+
+  .expense-buttons-container {
+    margin: 15px 0px;
+    button {
+      width: 50%;
+      padding: 5px;
+      border: 0;
+      text-transform: uppercase;
+      font-weight: 500;
+      &:hover {
+        opacity: 0.7;
+      }
+      &:first-child {
+        background-color: $lightYellow;
+        color: $yellow;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+      }
+      &:last-child {
+        background-color: $yellow;
+        color: $white;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
+    }
+  }
+}
+.expenses-table-main-container {
+  font-size: 14px;
+  .table {
+    border: none;
+  }
+
+  td {
+    padding: 10px 5px;
+
+    border: none !important;
+  }
+  .income-row {
+    .transaction-dot {
+      width: 5px;
+      height: 5px;
+      padding: 0;
+      margin: 0;
+      border-radius: 100%;
+      background-color: $darkBlue;
+    }
+
+    .amount {
+      color: $darkBlue;
+    }
+  }
+
+  .expense-row {
+    border: none !important;
+    .transaction-dot {
+      width: 5px;
+      height: 5px;
+      padding: 0;
+      margin: 0;
+      border-radius: 100%;
+      background-color: $red;
+    }
+    .amount {
+      color: $red;
+    }
+  }
+
+  .icon-container {
+    background-color: $darkGray;
+    height: auto;
+    padding: 5px 2px;
+    @include flex-center;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .icon-container2 {
+    background-color: $lightRed;
+    height: auto;
+    padding: 5px 2px;
+    @include flex-center;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .category {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .date,
+  .description {
+    color: $textGray;
+  }
+}
