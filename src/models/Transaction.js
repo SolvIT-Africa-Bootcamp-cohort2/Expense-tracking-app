@@ -1,6 +1,5 @@
 import { Schema, model } from "mongoose";
-import { object, number, string } from "@hapi/joi";
-
+const Joi = require("@hapi/joi")
 const schema = Schema({
     description: {type:String, required:[true,"Expense Description is required"]},
     amount:{type: Number, required: true},
@@ -16,10 +15,10 @@ const schema = Schema({
 const Transaction = model("Transaction",schema);
 
 const validateTransaction = (transaction) =>{
-    const schema = object({
-        amount: number().required(),
-        description: string().required(),
-        category:string().required()
+    const schema = Joi.object({
+        amount: Joi.number().required(),
+        description: Joi.string().required(),
+        category:Joi.string().required()
     })
     return schema.validate(transaction);
 }

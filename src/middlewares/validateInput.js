@@ -1,5 +1,5 @@
 // validateMiddleware
-exports.validateInput = (validator) =>{
+export function validateInput(validator){
     return (req, res, next) => {
       const { error } = validator(req.body)
       if (error) {
