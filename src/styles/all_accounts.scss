@@ -5,6 +5,11 @@
 .header {
   border-bottom: 1px solid $darkGray;
   padding: 10px 15px;
+
+  h2 {
+    text-transform: capitalize;
+  }
+
   @include flex-space;
   .filtering {
     @include flex-center;

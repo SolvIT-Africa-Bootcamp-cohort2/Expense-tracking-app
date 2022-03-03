@@ -1,6 +1,4 @@
 import React from "react";
-import { AiTwotoneDelete } from "react-icons/ai";
-import { FiEdit2 } from "react-icons/fi";
 import "../../../styles/all_accounts.scss";
 import CircularPie from "./Charts/CircularPie";
 import LineChart from "./Charts/LineChart";

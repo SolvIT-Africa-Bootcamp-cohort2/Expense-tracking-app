@@ -12,6 +12,9 @@ export class CircularPie extends Component {
           width: 380,
           type: "pie",
         },
+        stroke: {
+          width: 1,
+        },
         labels: ["FOODS", "CLOTHING", "AIRTIME", "PAY LOAN", "TRIP"],
         title: {
           text: "EXPENSES",

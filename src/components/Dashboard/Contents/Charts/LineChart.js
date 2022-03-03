@@ -29,7 +29,7 @@ export class LineChart extends Component {
           enabled: false,
         },
         stroke: {
-          width: [5, 7, 5],
+          width: [2, 2],
           curve: "smooth",
         },
         title: {
