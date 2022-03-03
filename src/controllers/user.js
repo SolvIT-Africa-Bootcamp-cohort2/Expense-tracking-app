@@ -117,7 +117,7 @@ const login = async(req,res,next)=>{
            if(await bcrypt.compare(req.body.password, user.password)){
           
           const payload = {id:user._id,email:user.email,gender:user.gender};
-             jwt.sign(payload,process.env.SECRET,(err,token)=>{
+             jwt.sign(payload,process.env.SECRET,{expiresIn: '12h'},(err,token)=>{
                  res.status(200).send({"token": token})
              })
            }else{
