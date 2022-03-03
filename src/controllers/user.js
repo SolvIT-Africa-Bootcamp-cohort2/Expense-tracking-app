@@ -121,7 +121,7 @@ const login = async(req,res,next)=>{
                  res.status(200).send({"token": token})
              })
            }else{
-              res.status(400).send({Message:"Password Incorrect"});
+              res.status(400).send({Message:"Invalid credentials"});
            }
         } catch (err) {
             log(err)
