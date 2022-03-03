@@ -59,8 +59,14 @@ const updateCategory = async(req,res,next) =>{
 
 const deleteCategory = async(req,res, next) =>{
         try {
+             let id = req.params.id;
+             if(id){
                 await Category.deleteOne({ _id: req.params.id })
                 res.status(202).send("Category Deleted Successfully")
+             }
+             else{
+                 res.status(400).send("Please provide id of category to delete")
+             }
         } catch {
             res.status(404).send({ error: "This Category doesn't exist!" })
         }    
