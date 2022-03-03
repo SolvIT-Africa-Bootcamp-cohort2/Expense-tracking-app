@@ -18,6 +18,10 @@ function register() {
               <input className="form-control" placeholder="Enter Name" />
             </div>
             <div className="form-group">
+              <label>Email</label>
+              <input className="form-control" placeholder="Enter your email" />
+            </div>
+            <div className="form-group">
               <label>Phone</label>
               <input className="form-control" placeholder="+250..." />
             </div>
@@ -30,13 +34,9 @@ function register() {
             </div>
             <button>Register</button>
           </form>
-          {/* <div className="forget-password-container">
-            <a>Forget password?</a>
-          </div> */}
-          {/* <hr /> */}
           <div className="form-footer2">
             <span>Already have an account</span>
-            <a>LOGIN</a>
+            <a href="../Login">LOGIN</a>
           </div>
         </div>
       </div>
