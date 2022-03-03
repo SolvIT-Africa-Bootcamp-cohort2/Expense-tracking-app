@@ -6,6 +6,7 @@ import cors from "cors";
 
 import userRouter from "./routes/user";
 import expenseRouter from "./routes/expense";
+import categoryRouter from "./routes/category";
 
 import { connectDB } from "./config/db";
 
@@ -33,7 +34,8 @@ const app = express();
           app.set("port",PORT)
 
           app.use("/user",userRouter)
-          app.use("/expense",expenseRouter)
+          app.user("/expense",expenseRouter)
+          app.use("/category",categoryRouter)
 
           app.listen(PORT, () =>{
             log(green('Server started on port', underline(`${PORT}`) + '!'));
