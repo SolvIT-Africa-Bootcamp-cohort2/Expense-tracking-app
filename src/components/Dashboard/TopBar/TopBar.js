@@ -1,6 +1,7 @@
 import React from "react";
 import "../../../styles/topbar.scss";
-import { FiSearch, FiBell, FiChevronDown, FiChevronUp } from "react-icons/fi";
+// import { FiSearch, FiBell, FiChevronDown, FiChevronUp } from "react-icons/fi";
+import { FiChevronDown } from "react-icons/fi";
 import { AiOutlineUser } from "react-icons/ai";
 
 function TopBar() {

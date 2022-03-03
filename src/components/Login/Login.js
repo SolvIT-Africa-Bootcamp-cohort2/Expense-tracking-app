@@ -28,12 +28,12 @@ function Login() {
             <button>Login</button>
           </form>
           <div className="forget-password-container">
-            <a>Forget password?</a>
+            <a href="#">Forget password?</a>
           </div>
           <hr />
           <div className="form-footer2">
             <span>New?</span>
-            <a>CREATE ACCOUNT</a>
+            <a href="/register">CREATE ACCOUNT</a>
           </div>
         </div>
       </div>
