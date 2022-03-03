@@ -9,13 +9,15 @@ exports.verifyToken = (req, res, next) =>{
 
         jwt.verify(bearerToken, process.env.SECRET, (err,user) =>{
         // console.log(err)
-            if (err) return res.sendStatus(403);
+            if (err) {
+             return   err["name"] == "TokenExpiredError"?res.status(400).send("JWT token has expired") : res.sendStatus(403);
+                }
             req.user = user;
             next();
         })
     }
     catch(err){
-        console.log(err)
+        res.status(500).send("Problem verifying user token");
     }
   }
 
