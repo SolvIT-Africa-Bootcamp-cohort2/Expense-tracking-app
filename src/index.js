@@ -3,7 +3,7 @@ require('dotenv').config()
 import express, { json } from "express";
 import { green, underline, red } from "chalk";
 import cors from "cors";
-
+import homeRouter from "./routes/home";
 import userRouter from "./routes/user";
 import expenseRouter from "./routes/expense";
 import categoryRouter from "./routes/category";
@@ -32,9 +32,9 @@ const app = express();
           })
           
           app.set("port",PORT)
-
+          app.use("/",homeRouter)
           app.use("/user",userRouter)
-          app.user("/expense",expenseRouter)
+          app.use("/expense",expenseRouter)
           app.use("/category",categoryRouter)
 
           app.listen(PORT, () =>{
