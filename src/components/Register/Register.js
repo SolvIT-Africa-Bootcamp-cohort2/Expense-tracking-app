@@ -36,6 +36,7 @@ function Register() {
       namesRef.current.classList.add("is-invalid");
       namesRef.current.focus();
       setNamesErrorMessage("Names is required");
+      setIsSubmitting(false);
       return;
     } else {
       setNamesErrorMessage("");
@@ -46,6 +47,7 @@ function Register() {
       emailRef.current.classList.add("is-invalid");
       setEmailErrorMessage("Please enter a valid email address");
       emailRef.current.focus();
+      setIsSubmitting(false);
       return;
     } else {
       setEmailErrorMessage("");
@@ -56,6 +58,7 @@ function Register() {
       phoneRef.current.classList.add("is-invalid");
       setPhoneErrorMessage("Enter your phone number");
       phoneRef.current.focus();
+      setIsSubmitting(false);
       return;
     } else {
       setPhoneErrorMessage("");
@@ -66,11 +69,13 @@ function Register() {
       passwordRef.current.classList.add("is-invalid");
       setPasswordErrorMessage("Enter your password");
       passwordRef.current.focus();
+      setIsSubmitting(false);
       return;
     } else if (password.length <= 3) {
       passwordRef.current.classList.add("is-invalid");
       setPasswordErrorMessage("Password must be greater than 3 characters");
       passwordRef.current.focus();
+      setIsSubmitting(false);
       return;
     } else {
       setPasswordErrorMessage("");
@@ -81,6 +86,7 @@ function Register() {
       password2Ref.current.classList.add("is-invalid");
       setConfirmPasswordErrorMessage("Passwords do not match");
       password2Ref.current.focus();
+      setIsSubmitting(false);
       return;
     } else {
       setConfirmPasswordErrorMessage("");
@@ -88,6 +94,7 @@ function Register() {
     }
 
     setPasswordErrorMessage("");
+
     Axios.post(backendUrl + "/user/register", {
       username: names,
       email: email,
@@ -97,11 +104,18 @@ function Register() {
     })
       .then(function (response) {
         console.log(response);
+        setNames("");
+        setEmail("");
+        setPhone("");
+        setPassword("");
+        setPassword2("");
+
         setIsSubmitting(false);
       })
       .catch((error) => {
         setIsSubmitting(false);
-        setFormSubmissionError(error.response.data);
+        console.log(error.response);
+        setFormSubmissionError(error.response.data.Message);
       });
   }
 
