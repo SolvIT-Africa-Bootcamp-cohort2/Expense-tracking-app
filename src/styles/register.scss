@@ -50,8 +50,13 @@
       }
 
       form {
+        .error {
+          font-weight: 400;
+          color: #ff0000;
+          font-size: 12px;
+        }
         label {
-          margin: 10px 0px;
+          margin: 5px 0px;
           font-weight: 600;
           font-size: 14px;
         }
