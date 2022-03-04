@@ -19,7 +19,6 @@ const sendEmail = async (email,username, subject, text) => {
       subject: subject,
       html: `<!DOCTYPE html>
       <html><head><title>Verify Email</title>
-      </head><body><div>
       <h3>You're almost there! </h3>
       <p>Hi ${username}, Thank you for your for creating account for Xpense Trackr.</p>
       <a href="${text}">Verify Account </a>
@@ -30,7 +29,7 @@ const sendEmail = async (email,username, subject, text) => {
     return true;
   } catch (error) {
     log(red("email not sent"));
-   // log(red(error));
+    log(red(error));
     return false;
   }
 };
