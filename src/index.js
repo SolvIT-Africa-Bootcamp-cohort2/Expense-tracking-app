@@ -1,4 +1,3 @@
-require('dotenv').config()
 
 import express, { json } from "express";
 import { green, underline, red } from "chalk";
@@ -9,6 +8,8 @@ import expenseRouter from "./routes/expense";
 import categoryRouter from "./routes/category";
 
 import { connectDB } from "./config/db";
+
+require('dotenv').config()
 
 const log = console.log;
 const PORT = process.env.PORT || 3000;

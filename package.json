@@ -19,6 +19,9 @@
   "bugs": {
     "url": "https://github.com/SolvIT-Africa-Bootcamp-cohort2/Expense-tracking-app/issues"
   },
+  "engines": {
+    "node": "16.14.0"
+  },
   "homepage": "https://github.com/SolvIT-Africa-Bootcamp-cohort2/Expense-tracking-app#readme",
   "dependencies": {
     "@hapi/joi": "^17.1.1",
