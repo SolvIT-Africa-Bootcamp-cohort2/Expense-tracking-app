@@ -54,8 +54,7 @@ const register = async (req,res, next )=>{
                 res.status(201).send({Message:"Check your email to verify your account!"})
               }else{
                   res.status(500).send("Problem sending email")
-              }
-                    
+              }     
        }
     } catch (error) {
         log(red(error))
@@ -80,7 +79,7 @@ const verifyUser = async(req,res)=>{
         res.send("email verified sucessfully");
       } catch (error) {
           log(red(error))
-        res.status(400).send("An error occured");
+        res.status(400).send("An error occured verifying your email");
       }
 }
 
@@ -114,6 +113,9 @@ const login = async(req,res,next)=>{
             return res.status(400).send({Message:"Cannot Find User"})
         }
         try {
+            if(!user.isVerified){
+                return res.status(400).send("You need to verify your account before signing in")
+            }
            if(await bcrypt.compare(req.body.password, user.password)){
           
           const payload = {id:user._id,email:user.email,gender:user.gender};

@@ -4,6 +4,8 @@ const chalk = require("chalk");
 const getExpenses = async (req,res, next) =>{
     try {
         const expenses = await Transaction.find({type:"expense",userId: req.user["id"]});
+        if(expenses.length == 0)
+           return res.status(200).send("No expenses currently")
         res.status(200).send(expenses)
     } catch (error) {
         console.log(chalk.red(error));
