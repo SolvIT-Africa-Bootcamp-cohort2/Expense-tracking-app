@@ -6,9 +6,7 @@ const  createAccount = async (req, res )=> {
         accountName :req.body.accountName ,
 
     });
-    // console.log(req.body)
     try {
-        // console.log("create")
 
          await accounts.save();
         res.send ("Account is successfully created");
@@ -19,9 +17,7 @@ const  createAccount = async (req, res )=> {
         res.status(401).send (error);
     }
 };
-// const getAccounts = async(req,res)={
-//     res.send ()
-// };
+
 
 
 
