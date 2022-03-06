@@ -4,10 +4,12 @@ const chalk = require("chalk");
 const getIncome = async (req,res, next) =>{
     try {
         const incomes = await Transaction.find({type:"income",userId: req.user["id"]});
-        res.status(200).send(incomes)
+        if(!incomes)
+          return res.status(204).send({Message:"No incomes currently"})
+        res.status(200).send({incomes:incomes})
     } catch (error) {
-        console.log(chalk.red(error));
-        res.status(404).send("No incomes were found")
+        //console.log(chalk.red(error));
+        res.status(404).send({Message:"No incomes were found"})
     }
 }
 
@@ -15,9 +17,11 @@ const getOneIncome = async (req,res, next) =>{
     try {
         const id = req.params.id;
         const income = await Transaction.findOne({_id:id});
-        res.status(200).send(income)
+        if(!income)
+          return res.status(204).send({Message:"No income currently"})
+        res.status(200).send({income:income})
     } catch (error) {
-        res.status(404).send("Income Not Found")
+        res.status(404).send({Message:"Income Not Found"})
     }
 }
 
@@ -55,17 +59,17 @@ const updateIncome = async(req,res,next) =>{
             res.status(404).send({Message:"Income Not Found"})  
         }
 	} catch(err) {
-		res.status(404).send({error: "We couldn't find this income " })
-        console.log(err);
+		res.status(404).send({Message: "We couldn't find this income " })
+        //console.log(err);
 	}   
 }
 
 const deleteIncome = async(req,res, next) =>{
         try {
                 await Transaction.deleteOne({ _id: req.params.id })
-                res.status(202).send("Income Deleted Successfully")
+                res.status(202).send({Message:"Income Deleted Successfully"})
         } catch {
-            res.status(404).send({ error: "This Income doesn't exist!" })
+            res.status(404).send({ Message: "This Income doesn't exist!" })
         }    
 }
 

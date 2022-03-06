@@ -6,10 +6,10 @@ const jwt  = require("jsonwebtoken")
 const getUsers =async (req,res, next) =>{
     try {
         const users= await User.find({});
-        res.status(200).send(users)
+        res.status(200).send({users:users})
     } catch (error) {
-        console.log(chalk.red(error));
-        res.status(404).send("No Users were found")
+        //console.log(chalk.red(error));
+        res.status(404).send({Message:"No Users were found"})
     }
 }
 
@@ -17,9 +17,9 @@ const getOneUser = async (req,res, next) =>{
     try {
         const id = req.params.id;
         const user = await User.findOne({_id:id});
-        res.status(200).send(user)
+        res.status(200).send({user:user})
     } catch (error) {
-        res.status(404).send("User Not Found")
+        res.status(404).send({Message:"User Not Found"})
     }
 }
 
@@ -44,7 +44,7 @@ const register = async (req,res, next )=>{
             res.status(201).send({Message:"user Registered Successfully"})
        }
     } catch (error) {
-        console.log(chalk.red(error))
+       // console.log(chalk.red(error))
         res.status(500).send({Message:"Problem with the server"})
     }
 }
@@ -67,8 +67,8 @@ const updateUser = async(req,res,next) =>{
             res.status(404).send({Message:"User Not Found"})  
         }
 	} catch(err) {
-		res.status(404).send({error: "We couldn't find this user " })
-        console.log(err);
+		res.status(404).send({Message: "We couldn't find this user " })
+        //console.log(err);
 	}
 }
 
@@ -83,13 +83,13 @@ const login = async(req,res,next)=>{
           
           const payload = {id:user._id,email:user.email,gender:user.gender};
              jwt.sign(payload,process.env.SECRET,(err,token)=>{
-                 res.status(200).send({"token": token})
+                 res.status(200).send({"token": token,Message:"Login successfully"})
              })
            }else{
               res.status(400).send({Message:"Password Incorrect"});
            }
         } catch (err) {
-            console.log(err)
+            //console.log(err)
             res.status(405).send({Message: "Problem with the server"});
         }
 }
