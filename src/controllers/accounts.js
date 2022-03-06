@@ -1,4 +1,7 @@
-let {accountModel} = require ('../models/Accounts')
+const { id } = require('@hapi/joi/lib/base');
+const {accountModel} = require ('../models/Accounts')
+
+// TO CREATE ACCOUNT
 
 
 const  createAccount = async (req, res)=> {
@@ -61,9 +64,28 @@ const deleteAccount= async(req,res,next)=>{
 
 }
 
+//TO UPDATE ACCOUNT BY ID
+
+const updateAccount =async (req,res)=>{
+     try {
+        const id = req.params.id;
+        let {accountName} = req.body ;
+        let account =await accountModel.findOne({_id:id});
+        if (accountName) account.accountName = accountName ;
+        await account.save();
+        res.status(200).send(`${account.accountName} is updated`);
+        console.log("Account updated");
+
+     } catch (error) {
+        res.status(404).send({error:"USER CAN'T BE FOUND"});
+     }
+    
+ 
+}
 
 
 
 
 
-module.exports = {createAccount,getOneAccount,getAccounts,deleteAccount}; 
+
+module.exports = {createAccount,getOneAccount,getAccounts,deleteAccount,updateAccount}; 
