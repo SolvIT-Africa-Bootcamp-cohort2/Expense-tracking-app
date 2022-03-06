@@ -5,11 +5,11 @@ const getExpenses = async (req,res, next) =>{
     try {
         const expenses = await Transaction.find({type:"expense",userId: req.user["id"]});
         if(expenses.length == 0)
-           return res.status(200).send("No expenses currently")
-        res.status(200).send(expenses)
+           return res.status(200).send({Message:"No expenses currently"})
+        res.status(200).send({expenses:expenses})
     } catch (error) {
-        console.log(chalk.red(error));
-        res.status(404).send("No expenses were found")
+       // console.log(chalk.red(error));
+        res.status(404).send({Message:"No expenses were found"})
     }
 }
 
@@ -17,9 +17,9 @@ const getOneExpense = async (req,res, next) =>{
     try {
         const id = req.params.id;
         const expense = await Transaction.findOne({_id:id});
-        res.status(200).send(expense)
+        res.status(200).send({expense:expense})
     } catch (error) {
-        res.status(404).send("Expense Not Found")
+        res.status(404).send({Message:"Expense Not Found"})
     }
 }
 
@@ -38,7 +38,7 @@ const addExpense = async (req,res, next) =>{
    newExpense.save();
    res.status(201).send({Message:"Expense added csuccessfully"})   
   } catch (error) {
-      console.log(chalk.red(error))
+      //console.log(chalk.red(error))
       res.status(500).send({Message:"Error adding expense"})
   }
 }
@@ -63,17 +63,17 @@ const updateExpense = async(req,res,next) =>{
             res.status(404).send({Message:"Expense Not Found"})  
         }
 	} catch(err) {
-		res.status(404).send({error: "We couldn't find this expense " })
-        console.log(err);
+		res.status(404).send({Message: "We couldn't find this expense " })
+       // console.log(err);
 	}   
 }
 
 const deleteExpense = async(req,res, next) =>{
         try {
                 await Transaction.deleteOne({ _id: req.params.id })
-                res.status(202).send("Expense Deleted Successfully")
+                res.status(202).send({Message:"Expense Deleted Successfully"})
         } catch {
-            res.status(404).send({ error: "This Expense doesn't exist!" })
+            res.status(404).send({ Message: "This Expense doesn't exist!" })
         }    
 }
 

@@ -1,11 +1,13 @@
 import { Schema, model } from "mongoose";
 const Joi = require("@hapi/joi")
+
 const schema = Schema({
     email: {type:String, required:[true,"Email is required"]},
     phone:{type:Number, length:12},
     username:{type:String, required:[true,"Username is required"]},
     password:{type:String, required: true},
     gender:{type:String, required:true},
+    role:{type:String},
     isVerified: {type: Boolean, default:false}
 },{
     versionKey:false
