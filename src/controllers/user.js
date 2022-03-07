@@ -66,7 +66,7 @@ const register = async (req,res, next )=>{
 const verifyUser = async(req,res)=>{
     try {
         const user = await User.findOne({ _id: req.params.id });
-        if (!user) return res.status(400).send({Message:"<h2>Invalid link</h2>"});
+        if (!user) return res.status(400).send({Message:"<h2>Invalid user link</h2>"});
     
         const token = await Token.findOne({
           userId: user._id,
@@ -77,10 +77,10 @@ const verifyUser = async(req,res)=>{
         await User.findOneAndUpdate({ _id: user._id},{isVerified: true });
         await Token.findByIdAndRemove(token._id);
     
-        res.send({Message:"email verified sucessfully"});
+        res.send({Message:"<h2> email verified sucessfully </h2>"});
       } catch (error) {
          // log(red(error))
-        res.status(400).send({Message:"An error occured verifying your email"});
+        res.status(400).send({Message:"<h2> An error occured verifying your email </h2>"});
       }
 }
 
