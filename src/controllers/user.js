@@ -77,10 +77,10 @@ const verifyUser = async(req,res)=>{
         await User.findOneAndUpdate({ _id: user._id},{isVerified: true });
         await Token.findByIdAndRemove(token._id);
     
-        res.send({Message:"<h2> email verified sucessfully </h2>"});
+        res.send({Message:"email verified sucessfully "});
       } catch (error) {
          // log(red(error))
-        res.status(400).send({Message:"<h2> An error occured verifying your email </h2>"});
+        res.status(400).send({Message:" An error occured verifying your email "});
       }
 }
 
@@ -115,7 +115,7 @@ const login = async(req,res,next)=>{
         }
         try {
             if(!user.isVerified){
-                return res.status(400).send("You need to verify your account before signing in")
+                return res.status(400).send({Message:"You need to verify your account before signing in"})
             }
            if(await bcrypt.compare(req.body.password, user.password)){
           
