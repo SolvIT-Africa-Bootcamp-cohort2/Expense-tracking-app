@@ -1,0 +1,47 @@
+@import "partials";
+@import "colors";
+
+.home-main-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+
+    img {
+      margin: 1rem 0px;
+    }
+  
+    .home-background-container {
+      @include flex-space;
+      height: 30%;
+      width: 100%;
+//     //   div {
+//     //   //   // width: 50%;
+//     //   //   // height: 100%;
+//     //   //   // &:first-child {
+//     //   //   //   background-color: $gray;
+//     //   //   // }
+//     //   //   // &:last-child {
+//     //   //   //   background-color: $white;
+//     //   //   }
+//     //   // }
+    }
+}
+   
+.header1 {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  margin-right: 12px;
+  padding-right: 0px;
+  padding-top: 25px;
+}
+ .photo {
+  width: 700px;
+  height: 450px;
+  padding-left: 50px;
+}
+.photo1 {
+  width: 850px;
+  height: 550px;
+  padding-left: 50px;
+}
