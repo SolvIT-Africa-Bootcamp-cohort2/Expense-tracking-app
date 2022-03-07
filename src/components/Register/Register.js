@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import "../../styles/register.scss";
 import Axios from "axios";
 import { backendUrl } from "../../controller/Config";
+import { Spinner } from "react-bootstrap";
 
 function Register() {
   const [names, setNames] = useState("");
@@ -31,6 +32,7 @@ function Register() {
     e.preventDefault();
     setIsSubmitting(true);
     setFormSubmissionError("");
+    setFormSubmissionSuccessMessage("");
     setFormSubmissionSuccessMessage("");
     if (names.trim() === "") {
       namesRef.current.classList.add("is-invalid");
@@ -104,17 +106,22 @@ function Register() {
     })
       .then(function (response) {
         console.log(response);
+        setIsSubmitting(false);
+        setFormSubmissionSuccessMessage(
+          "User registration has been completed success full. Please open a verification link that we have sent to " +
+            email
+        );
         setNames("");
         setEmail("");
         setPhone("");
         setPassword("");
         setPassword2("");
-
-        setIsSubmitting(false);
       })
       .catch((error) => {
-        setIsSubmitting(false);
         console.log(error.response);
+        setIsSubmitting(false);
+        setPassword("");
+        setPassword2("");
         setFormSubmissionError(error.response.data.Message);
       });
   }
@@ -139,6 +146,7 @@ function Register() {
                 value={names}
                 placeholder="Enter your name"
                 onChange={(e) => setNames(e.target.value)}
+                disabled={isSubmitting}
                 ref={namesRef}
               />
               <span className="error">{namesErrorMessage}</span>
@@ -152,6 +160,7 @@ function Register() {
                 value={email}
                 placeholder="Enter your email"
                 onChange={(e) => setEmail(e.target.value)}
+                disabled={isSubmitting}
                 ref={emailRef}
               />
               <span className="error">{emailErrorMessage}</span>
@@ -165,6 +174,7 @@ function Register() {
                 value={phone}
                 placeholder="Enter your phone number"
                 onChange={(e) => setPhone(e.target.value)}
+                disabled={isSubmitting}
                 ref={phoneRef}
               />
               <span className="error">{phoneErrorMessage}</span>
@@ -178,6 +188,7 @@ function Register() {
                 value={password}
                 placeholder="Enter password"
                 onChange={(e) => setPassword(e.target.value)}
+                disabled={isSubmitting}
                 ref={passwordRef}
               />
               <span className="error">{passwordErrorMessage}</span>
@@ -192,6 +203,7 @@ function Register() {
                 placeholder="Confirm  password"
                 onChange={(e) => setPassword2(e.target.value)}
                 ref={password2Ref}
+                disabled={isSubmitting}
               />
               <span className="error">{confirmPasswordErrorMessage}</span>
             </div>
@@ -200,9 +212,16 @@ function Register() {
                 {formSubmissionError}.
               </div>
             )}
+
+            {formSubmissionSuccessMessage != "" && (
+              <div className="alert alert-success my-2">
+                {formSubmissionSuccessMessage}.
+              </div>
+            )}
             {isSubmitting ? (
               <button type="button" disabled={true}>
-                Registering...
+                <Spinner animation="border" size="sm" role="status" />
+                &nbsp;Registering...
               </button>
             ) : (
               <button type="submit">Register</button>
