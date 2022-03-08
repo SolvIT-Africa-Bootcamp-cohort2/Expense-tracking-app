@@ -5,10 +5,11 @@
     position: relative;
     width: 100%;
     height: 100vh;
+    padding-left: 2rem;
+    padding-right: 2em;
+    
 
-    img {
-      margin: 1rem 0px;
-    }
+  
   
     .home-background-container {
       @include flex-space;
@@ -41,7 +42,7 @@
   padding-left: 50px;
 }
 .photo1 {
-  width: 850px;
+  width: 700px;
   height: 550px;
   padding-left: 50px;
 }
