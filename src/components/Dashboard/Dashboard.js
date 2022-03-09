@@ -1,17 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Contents from "./Contents/Contents";
 import Sidebar from "./Sidebar";
 
 import "../../styles/dashboard.scss";
 import TopBar from "./TopBar/TopBar";
+import { UserMainContext } from "../../context/UserContext";
 
 function Dashboard() {
-  useEffect(() => {}, []);
+  const context = useContext(UserMainContext);
   return (
     <div className="dashboard-main-container">
       <TopBar />
       <Sidebar />
       <Contents />
+      {JSON.stringify(context.token)}
     </div>
   );
 }

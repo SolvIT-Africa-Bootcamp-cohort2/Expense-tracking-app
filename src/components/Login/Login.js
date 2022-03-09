@@ -4,6 +4,11 @@ import Axios from "axios";
 import { backendUrl } from "../../controller/Config";
 import { Spinner } from "react-bootstrap";
 
+const logTheUserIn = async ({ token }) => {
+  await localStorage.setItem("token", token);
+  window.location = "/dashboard";
+};
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -43,18 +48,22 @@ function Login() {
     Axios.post(backendUrl + "/user/login", { email, password })
       .then((res) => {
         setIsSubmitting(false);
-        console.log("response", res.data);
+        logTheUserIn(res.data);
       })
       .catch((error) => {
         setIsSubmitting(false);
         setPassword("");
         console.log(JSON.stringify(error));
-        if (error.response.data.Message) {
-          setSubmissionError(error.response.data.Message);
-        } else {
-          setSubmissionError(
-            "Something went wrong, try again later after sometime."
-          );
+        try {
+          if (error.response.data.Message) {
+            setSubmissionError(error.response.data.Message);
+          } else {
+            setSubmissionError(
+              "Something went wrong, try again later after sometime."
+            );
+          }
+        } catch (err) {
+          setSubmissionError(error.message);
         }
       });
   };
