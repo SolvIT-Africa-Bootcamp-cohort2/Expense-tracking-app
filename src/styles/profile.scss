@@ -1,0 +1,37 @@
+@import "colors";
+@import "partials";
+
+    .container
+    
+    h2 {
+      color: $blue;
+      font-size: 16px;
+    }
+    p {
+    font-size: 18px;
+    color: $blue;
+    font-weight: 600;
+    padding-top: 8px;
+    }
+    label {
+      margin: 5px 0px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    button {
+      margin: 1rem 4px;
+      width: 50%;
+      background-color: $yellow;
+      color: $white;
+      border: none;
+      outline: none;
+      padding: 5px ;
+      border-radius: 8px;
+      margin-top: 4px;
+    }
+  .p{
+    text-align: center;
+    font-size: 18px;
+    color: $blue;
+    font-weight: 600;
+  }
