@@ -2,23 +2,16 @@
 import express, { json } from "express";
 import { green, underline, red } from "chalk";
 import cors from "cors";
+
 import homeRouter from "./routes/home";
 import userRouter from "./routes/user";
 import expenseRouter from "./routes/expense";
+import incomeRouter from "./routes/income";
 import categoryRouter from "./routes/category";
 
 import { connectDB } from "./config/db";
 
 require('dotenv').config()
-
-import express, { json } from "express";
-import { green, underline, red } from "chalk";
-import cors from "cors";
-
-import userRouter from "./routes/user";
-import expenseRouter from "./routes/expense";
-
-import { connectDB } from "./config/db";
 
 const log = console.log;
 const PORT = process.env.PORT || 3000;
@@ -45,6 +38,7 @@ const app = express();
           app.use("/",homeRouter)
           app.use("/user",userRouter)
           app.use("/expense",expenseRouter)
+          app.use("/income",incomeRouter)
           app.use("/category",categoryRouter)
 
           app.listen(PORT, () =>{

@@ -1,4 +1,4 @@
-const Transaction = require("../models/Transaction").default;
+const {Transaction} = require("../models/Transaction").default;
 const chalk = require("chalk");
 
 const getIncome = async (req,res, next) =>{
@@ -35,6 +35,7 @@ const addIncome = async (req,res, next) =>{
    newIncome.save();
    res.status(201).send({Message:"Income added successfully"})   
   } catch (error) {
+      console.log(error)
       res.status(500).send({Message:"Error adding income"})
   }
 }

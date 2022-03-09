@@ -1,5 +1,6 @@
 import { Schema, model } from "mongoose";
 const Joi = require("@hapi/joi")
+
 const schema = Schema({
     description: {type:String, required:[true,"Expense Description is required"]},
     amount:{type: Number, required: true},
