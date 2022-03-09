@@ -13,7 +13,6 @@ function Dashboard() {
       <TopBar />
       <Sidebar />
       <Contents />
-      {JSON.stringify(context.token)}
     </div>
   );
 }

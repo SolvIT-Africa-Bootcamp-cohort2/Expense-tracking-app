@@ -1,12 +1,18 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "../../styles/login.scss";
 import Axios from "axios";
 import { backendUrl } from "../../controller/Config";
 import { Spinner } from "react-bootstrap";
+import { UserMainContext } from "../../context/UserContext";
 
 const logTheUserIn = async ({ token }) => {
   await localStorage.setItem("token", token);
   window.location = "/dashboard";
+};
+
+const restrictAuthanticatedUsers = async () => {
+  const token = await localStorage.getItem("token");
+  if (token != null) window.location = "dashboard";
 };
 
 function Login() {
@@ -19,6 +25,10 @@ function Login() {
   const passwordRef = useRef(null);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    restrictAuthanticatedUsers();
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();

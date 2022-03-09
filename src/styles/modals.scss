@@ -1,0 +1,15 @@
+@import "partials";
+@import "colors";
+
+.create-source-of-money-main-container {
+  padding-bottom: 1rem;
+  .buttons-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    button {
+      background-color: $yellow;
+      color: $white;
+    }
+  }
+}

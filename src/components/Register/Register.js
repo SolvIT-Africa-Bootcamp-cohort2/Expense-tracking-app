@@ -1,8 +1,13 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "../../styles/register.scss";
 import Axios from "axios";
 import { backendUrl } from "../../controller/Config";
 import { Spinner } from "react-bootstrap";
+
+const restrictAuthanticatedUsers = async () => {
+  const token = await localStorage.getItem("token");
+  if (token != null) window.location = "dashboard";
+};
 
 function Register() {
   const [names, setNames] = useState("");
@@ -27,6 +32,10 @@ function Register() {
   const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
   const [confirmPasswordErrorMessage, setConfirmPasswordErrorMessage] =
     useState("");
+
+  useEffect(() => {
+    restrictAuthanticatedUsers();
+  }, []);
 
   function onSubmit(e) {
     e.preventDefault();
