@@ -4,13 +4,19 @@ import CircularPie from "./Charts/CircularPie";
 import LineChart from "./Charts/LineChart";
 import Expenses from "./Expenses";
 import AddNewIncome from "../Contents/Modals/AddNewIncome";
+import AddNewExpense from "../Contents/Modals/AddNewExpense";
 
 
 function AllAccounts() {
   const [showNewIncomeModal, setShowNewIncomeModal] = useState (false);
+  const [showNewExpenseModal, setShowNewExpenseModal] = useState (false);
 
   const handleCloseNewIncomeModal = () => setShowNewIncomeModal(false);
   const handleShowNewIncomeModal = () => setShowNewIncomeModal(true);
+
+  const handleCloseNewExpenseModal = () => setShowNewExpenseModal(false);
+  const handleShowNewExpenseModal = () => setShowNewExpenseModal(true);
+
 
   return (
     <div>
@@ -51,7 +57,8 @@ function AllAccounts() {
                   <span>12 feb 2020 - now</span>
                 </div>
                 <div className="expense-buttons-container">
-                  <button> expense</button>
+                  <button  onClick={() =>
+                     setShowNewExpenseModal(true)}> expense</button>
                   <button  onClick={() =>
                      setShowNewIncomeModal(true)}>income</button>
                 </div>
@@ -72,6 +79,10 @@ function AllAccounts() {
       <AddNewIncome
      showNewIncomeModal={showNewIncomeModal}
      handleCloseNewIncomeModal={handleCloseNewIncomeModal} />
+     <AddNewExpense
+     showNewExpenseModal= {showNewExpenseModal}
+     handleCloseNewExpenseModal={handleCloseNewExpenseModal}
+     />
     </div>
   );
 }
