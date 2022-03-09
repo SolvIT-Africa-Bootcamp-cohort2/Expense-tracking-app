@@ -20,8 +20,7 @@ const sendEmail = async (email,username, subject, text) => {
       html: `<!DOCTYPE html>
       <html><head><title>Verify Email</title>
       <h3>You're almost there! </h3>
-      <p>Hi ${username}, Thank you for your for creating account for Xpense Trackr.</p>
-      <a href="${text}">Verify Account </a>
+      <p>Hi ${username}, Thank you  for creating account for Xpense Trackr.</p>
 
       </div></body></html>`
     });

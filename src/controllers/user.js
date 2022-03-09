@@ -15,17 +15,16 @@ const getUsers =async (req,res, next) =>{
         const users= await User.find({});
         res.status(200).send({users:users})
     } catch (error) {
-        //log(chalk.red(error));
+        //log(red(error));
         res.status(404).send({Message:"No Users were found"})
     }
 }
 
 const getOneUser = async (req,res, next) =>{
     try {
-        const id = req.params.id;
-        const user = await User.findOne({_id:id});
-        res.status(200).send({user:user})
+        res.status(200).send({user:req.user})
     } catch (error) {
+        log(red(error))
         res.status(404).send({Message:"User Not Found"})
     }
 }

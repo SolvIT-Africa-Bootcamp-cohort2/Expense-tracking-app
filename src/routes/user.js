@@ -2,14 +2,16 @@ const express = require("express")
 const router = express.Router();
 
 const {validateInput} = require("../middlewares/validateInput")
+const {verifyToken} = require("../middlewares/verifyToken")
+
 const {login,register,getUsers,getOneUser,updateUser,verifyUser} = require("../controllers/user.js")
 const {validateUser,validateUserLogin} = require("../models/User").default
 
-router.get("/",getUsers)
+router.get("/",verifyToken, getUsers)
 
-router.get("/:id",getOneUser)
+router.get("/:id",verifyToken, getOneUser)
 
-router.put("/:id",updateUser)
+router.put("/:id",verifyToken, updateUser)
 
 router.route("/register")
       .get((req,res)=>{
