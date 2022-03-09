@@ -7,9 +7,10 @@ import AddSourceOfMoney from "./Contents/Modals/AddSourceOfMoney";
 
 function Sidebar() {
   const [showSourceOfMoneyModal, setShowSourceOfMoneyModal] = useState(false);
-
+  
   const handleCloseSourceOfMoneyModal = () => setShowSourceOfMoneyModal(false);
-  const handleShowSourceOfMoneModal = () => setShowSourceOfMoneyModal(true);
+  const handleShowSourceOfMoneyModal = () => setShowSourceOfMoneyModal(true);
+  
 
   return (
     <>

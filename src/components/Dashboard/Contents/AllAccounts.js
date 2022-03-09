@@ -1,10 +1,17 @@
-import React from "react";
+import React, {useState} from "react";
 import "../../../styles/all_accounts.scss";
 import CircularPie from "./Charts/CircularPie";
 import LineChart from "./Charts/LineChart";
 import Expenses from "./Expenses";
+import AddNewIncome from "../Contents/Modals/AddNewIncome";
+
 
 function AllAccounts() {
+  const [showNewIncomeModal, setShowNewIncomeModal] = useState (false);
+
+  const handleCloseNewIncomeModal = () => setShowNewIncomeModal(false);
+  const handleShowNewIncomeModal = () => setShowNewIncomeModal(true);
+
   return (
     <div>
       <div className="header">
@@ -44,8 +51,9 @@ function AllAccounts() {
                   <span>12 feb 2020 - now</span>
                 </div>
                 <div className="expense-buttons-container">
-                  <button>expense</button>
-                  <button>income</button>
+                  <button> expense</button>
+                  <button  onClick={() =>
+                     setShowNewIncomeModal(true)}>income</button>
                 </div>
                 <LineChart />
                 <CircularPie />
@@ -61,6 +69,9 @@ function AllAccounts() {
           </div>
         </div>
       </div>
+      <AddNewIncome
+     showNewIncomeModal={showNewIncomeModal}
+     handleCloseNewIncomeModal={handleCloseNewIncomeModal} />
     </div>
   );
 }

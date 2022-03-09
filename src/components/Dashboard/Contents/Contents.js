@@ -6,8 +6,8 @@ import Profile from "./Profile"
 function Contents() {
   return (
     <div className="contents-main-container">
-      {/* <AllAccounts /> */}
-      <Profile/>
+      <AllAccounts />
+      {/* <Profile/> */}
     </div>
   );
 }
