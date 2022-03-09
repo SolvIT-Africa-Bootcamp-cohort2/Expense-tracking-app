@@ -11,6 +11,15 @@ import { connectDB } from "./config/db";
 
 require('dotenv').config()
 
+import express, { json } from "express";
+import { green, underline, red } from "chalk";
+import cors from "cors";
+
+import userRouter from "./routes/user";
+import expenseRouter from "./routes/expense";
+
+import { connectDB } from "./config/db";
+
 const log = console.log;
 const PORT = process.env.PORT || 3000;
 

@@ -3,12 +3,13 @@ const chalk = require("chalk");
 
 const getExpenses = async (req,res, next) =>{
     try {
+        if(req.query && Object.keys(req.query).length !== 0){
+            return getExpenseFromDate(req,res)
+        }
         const expenses = await Transaction.find({type:"expense",userId: req.user["id"]});
-        if(expenses.length == 0)
-           return res.status(200).send({Message:"No expenses currently"})
-        res.status(200).send({expenses:expenses})
+        res.status(200).send(expenses)
     } catch (error) {
-       // console.log(chalk.red(error));
+        console.log(chalk.red(error));
         res.status(404).send({Message:"No expenses were found"})
     }
 }
@@ -17,15 +18,25 @@ const getOneExpense = async (req,res, next) =>{
     try {
         const id = req.params.id;
         const expense = await Transaction.findOne({_id:id});
-        res.status(200).send({expense:expense})
+        expense?res.status(200).send(expense):res.status(401).send({Message:"Expense Not Found"});
     } catch (error) {
         res.status(404).send({Message:"Expense Not Found"})
     }
 }
 
 const getExpenseFromDate = async(req,res,next) =>{
-    const {from, to } =req.params;
-    res.send({from:from, to: to})
+    const {from, to } =req.query;
+    const newTo = new Date(to).getDay();
+    console.log( newTo)
+    const expenses = await Transaction.find({
+        created_at:{
+            $gte: new Date(from).toISOString(),
+            $lte: new Date(to).toISOString()
+        },
+        type:"expense",
+        userId: req.user["id"]
+    })
+    res.status(200).send({expenses:expenses})
 }
 
 const addExpense = async (req,res, next) =>{

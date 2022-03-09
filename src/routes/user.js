@@ -19,6 +19,10 @@ router.route("/register")
 
 router.get("/verify/:id/:token",verifyUser)
 
-router.post("/login",validateInput(validateUserLogin), login)
+router.route("/login")
+      .get((req,res)=>{
+            res.send("This is login page")
+      })
+      .post(validateInput(validateUserLogin), login)
 
 module.exports = router;
