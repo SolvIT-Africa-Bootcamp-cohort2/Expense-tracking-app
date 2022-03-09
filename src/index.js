@@ -8,6 +8,8 @@ import userRouter from "./routes/user";
 import expenseRouter from "./routes/expense";
 import incomeRouter from "./routes/income";
 import categoryRouter from "./routes/category";
+import accountsRouter from "./routes/accounts" ;
+
 
 import { connectDB } from "./config/db";
 
@@ -40,6 +42,8 @@ const app = express();
           app.use("/expense",expenseRouter)
           app.use("/income",incomeRouter)
           app.use("/category",categoryRouter)
+          app.use ("/accounts", accountsRouter)
+         
 
           app.listen(PORT, () =>{
             log(green('Server started on port', underline(`${PORT}`) + '!'));

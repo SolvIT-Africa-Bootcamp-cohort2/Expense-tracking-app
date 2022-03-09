@@ -105,7 +105,6 @@ const updateUser = async(req,res,next) =>{
       //  log(err);
 	}
 }
-
 const login = async(req,res,next)=>{
         const user = await User.findOne({email: req.body.email})
 
