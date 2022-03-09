@@ -6,11 +6,25 @@ const accountSchema = Schema ({
  accountName : {
       type:String ,
       required:true 
-    } 
-
-});
+    },
+  userId : {
+    type:String ,required:true 
+  }
+},{
+  versionKey:false
+})
  
-const accountModel = model ("accountModel" , accountSchema);
+const Account = model("Account" ,accountSchema);
 
 
-module.exports= {accountModel}; 
+const validateAccount = (account) =>{
+   const schema = Joi.object({
+     accountName : Joi.string().required()
+   })
+   return schema.validate(account);
+
+}
+export default {
+  Account,
+  validateAccount 
+}
