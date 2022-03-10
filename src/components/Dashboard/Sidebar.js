@@ -24,6 +24,7 @@ function Sidebar({}) {
 
   useEffect(() => {
     let sub = true;
+    console.log("started");
     if (sub) {
       Axios.get(backendUrl + "/accounts", {
         headers: {
@@ -33,22 +34,16 @@ function Sidebar({}) {
         .then((res) => {
           if (sub) {
             if (res.data.accounts) {
-              setMoneyAccounts();
-              setTimeout(() => {
-                if (sub) {
-                  setIsLoadingMoneyAccounts(false);
-                }
-              }, 2000);
+              setMoneyAccounts(res.data.accounts);
             }
           }
+          setTimeout(() => {
+            setIsLoadingMoneyAccounts(false);
+          }, 2000);
         })
         .catch((error) => {
           console.log(error);
-          setTimeout(() => {
-            if (sub) {
-              setIsLoadingMoneyAccounts(false);
-            }
-          }, 2000);
+          setIsLoadingMoneyAccounts(false);
         });
     }
     return () => {

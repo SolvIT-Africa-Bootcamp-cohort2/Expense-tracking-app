@@ -9,6 +9,8 @@ import LineChart from "./Charts/LineChart";
 import Expenses from "./Expenses";
 import AddNewIncome from "../Contents/Modals/AddNewIncome";
 import AddNewExpense from "../Contents/Modals/AddNewExpense";
+import Axios from "axios";
+import { backendUrl } from "../../../controller/Config";
 
 function MoneyAccounts() {
   const context = useContext(UserMainContext);
@@ -23,6 +25,33 @@ function MoneyAccounts() {
 
   const [isLoadingAccountContents, setIsLoadingAccountContents] =
     useState(true);
+  const [expensesAndIncome, setExpensesAndIncome] = useState([]);
+  useEffect(() => {
+    let sub = true;
+    if (context.activeTab.name === null) {
+      //select from all accounts
+      Axios.get(backendUrl + "/expense", {
+        headers: {
+          Authorization: `Bearer ${context.token}`,
+        },
+      })
+        .then((res) => {
+          if (!res.data.Message) {
+            setExpensesAndIncome(res.data);
+          }
+          setIsLoadingAccountContents(false);
+        })
+        .catch((error) => {
+          setIsLoadingAccountContents(false);
+          console.log(error);
+        });
+    } else {
+      setIsLoadingAccountContents(false);
+    }
+    return () => {
+      sub = false;
+    };
+  }, []);
   return (
     <div>
       {isLoadingAccountContents ? (
