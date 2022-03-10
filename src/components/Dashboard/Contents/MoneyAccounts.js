@@ -94,8 +94,12 @@ function MoneyAccounts() {
                       <span>12 feb 2020 - now</span>
                     </div>
                     <div className="expense-buttons-container">
-                      <button>expense</button>
-                      <button>income</button>
+                      <button onClick={() => setShowNewExpenseModal(true)}>
+                        expense
+                      </button>
+                      <button onClick={() => setShowNewIncomeModal(true)}>
+                        income
+                      </button>
                     </div>
                   </>
                 )}
