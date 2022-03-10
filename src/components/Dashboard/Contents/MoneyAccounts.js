@@ -6,7 +6,7 @@ import AccountHeader from "../../placeholders/AccountHeader";
 import Balance from "../../placeholders/Balance";
 import CircularPie from "./Charts/CircularPie";
 import LineChart from "./Charts/LineChart";
-import Expenses from "./Expenses";
+import ExpensesAndIncomeForAccount from "./ExpensesAndIncomeForAccount";
 import AddNewIncome from "../Contents/Modals/AddNewIncome";
 import AddNewExpense from "../Contents/Modals/AddNewExpense";
 import Axios from "axios";
@@ -95,10 +95,10 @@ function MoneyAccounts() {
                     </div>
                     <div className="expense-buttons-container">
                       <button onClick={() => setShowNewExpenseModal(true)}>
-                        expense
+                        add expense
                       </button>
                       <button onClick={() => setShowNewIncomeModal(true)}>
-                        income
+                        add income
                       </button>
                     </div>
                   </>
@@ -115,7 +115,11 @@ function MoneyAccounts() {
           <div className="col-md-8">
             <div className="expenses-table-main-container">
               <div className="pt-3">
-                {isLoadingAccountContents ? <AccountExpenses /> : <Expenses />}
+                {isLoadingAccountContents ? (
+                  <AccountExpenses />
+                ) : (
+                  <ExpensesAndIncomeForAccount />
+                )}
               </div>
             </div>
           </div>

@@ -1,7 +1,7 @@
 import React from "react";
-import ExpenseItem from "./ExpenseItem";
+import ExpenseItem from "./ExpenseIncomeItem";
 
-function Expenses() {
+function ExpensesAndIncomeForAccount() {
   const expenses = [
     {
       type: "income",
@@ -115,4 +115,4 @@ function Expenses() {
   );
 }
 
-export default Expenses;
+export default ExpensesAndIncomeForAccount;

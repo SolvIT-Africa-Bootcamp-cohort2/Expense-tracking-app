@@ -1,9 +1,9 @@
 import React from "react";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { FiEdit2 } from "react-icons/fi";
-import "../../../styles/expenseItem.scss";
+import "../../../styles/expenseIncomeItem.scss";
 
-function ExpenseItem({ expense }) {
+function ExpenseIncomeItem({ expense }) {
   return (
     <div className="expenses-main-container">
       {expense.type == "income" ? (
@@ -67,4 +67,4 @@ function ExpenseItem({ expense }) {
   );
 }
 
-export default ExpenseItem;
+export default ExpenseIncomeItem;
