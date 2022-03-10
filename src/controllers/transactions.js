@@ -1,20 +1,16 @@
 
-const {Transaction} = require ('../models/Transaction')
+import T  from '../models/Transaction';
 
-
-    const getTransactions = async (req,res)=>{
-        console.log("gfvgv")
+   export const getTransactions = async (req,res)=>{
     try {
-        const transaction = await Transaction.find ({userId: req.user["id"] })
-        if (transaction.length===0) {
+        const transaction = await T.Transaction.find ({userId: req.user["id"] })
+        if (transaction.length==0) {
            return res.status(204).send({Message:"No transaction currently"});
         }
-        cocnsole.log("erjoghewnrv");
-        res.status(404).send ({transaction:transaction})
+        res.status(200).send ({transactions:transaction})
 
         }catch (error){
-             res.status(404).send({error:"No transaction were found"})
+            //console.log(error)
+             res.status(404).send({error:"No transactions were found"})
          }
         }
-
-module.exports= {getTransactions} 
