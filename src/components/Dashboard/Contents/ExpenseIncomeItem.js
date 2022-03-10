@@ -1,9 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 import { AiTwotoneDelete } from "react-icons/ai";
+import EditExpense from "../Contents/Modals/EditExpense";
 import { FiEdit2 } from "react-icons/fi";
 import "../../../styles/expenseIncomeItem.scss";
 
+
 function ExpenseIncomeItem({ expense }) {
+  const [showEditExpenseModal, setShowEditExpenseModal] = useState(false);
+
+  const handleCloseEditExpenseModal = () => setShowEditExpenseModal(false);
+  const handleShowEditExpenseModal = () => setShowEditExpenseModal(true);
+
   return (
     <div className="expenses-main-container">
       {expense.type == "income" ? (
@@ -24,9 +31,9 @@ function ExpenseIncomeItem({ expense }) {
             <span className="description">{expense.description}</span>
           </td>
           <td>
-            <div className="icons-main-container">
-              <div className="icon-container" title="edit">
-                <FiEdit2 size={15} color="#5e419a" />
+            <div className="icons-main-container" >
+              <div onClick={() => setShowEditExpenseModal(true)}  className="icon-container" title="edit">
+                <FiEdit2  size={15} color="#5e419a" />
               </div>
               <div className="icon-container2" title="delete">
                 <AiTwotoneDelete size={15} color="#eb6c6d" />
@@ -54,7 +61,7 @@ function ExpenseIncomeItem({ expense }) {
           <td>
             <div className="icons-main-container">
               <div className="icon-container" title="edit">
-                <FiEdit2 size={15} color="#5e419a" />
+                <FiEdit2 onClick={() => setShowEditExpenseModal(true)} size={15} color="#5e419a" />
               </div>
               <div className="icon-container2" title="delete">
                 <AiTwotoneDelete size={15} color="#eb6c6d" />
@@ -63,7 +70,12 @@ function ExpenseIncomeItem({ expense }) {
           </td>
         </tr>
       )}
+      <EditExpense
+        showEditExpenseModal={showEditExpenseModal}
+        handleCloseEditExpenseModal={handleCloseEditExpenseModal}
+        />
     </div>
+    
   );
 }
 

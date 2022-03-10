@@ -23,9 +23,10 @@ function MoneyAccounts() {
   const handleCloseNewExpenseModal = () => setShowNewExpenseModal(false);
   const handleShowNewExpenseModal = () => setShowNewExpenseModal(true);
 
+
   const [isLoadingAccountContents, setIsLoadingAccountContents] =
     useState(true);
-  const [expensesAndIncome, setExpensesAndIncome] = useState([]);
+  const [ExpensesAndIncome, setExpensesAndIncome] = useState([]);
   useEffect(() => {
     let sub = true;
     if (context.activeTab.name === null) {
