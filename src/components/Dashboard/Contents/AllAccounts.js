@@ -58,9 +58,9 @@ function AllAccounts() {
                 </div>
                 <div className="expense-buttons-container">
                   <button  onClick={() =>
-                     setShowNewExpenseModal(true)}> expense</button>
+                     setShowNewExpenseModal(true)}> Expense</button>
                   <button  onClick={() =>
-                     setShowNewIncomeModal(true)}>income</button>
+                     setShowNewIncomeModal(true)}>Income</button>
                 </div>
                 <LineChart />
                 <CircularPie />

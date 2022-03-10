@@ -27,31 +27,26 @@ function AddNewExpense( {
               placeholder="Enter the amount"
             />
             </div>
-            {/* <div className='form-control'>
-            <Dropdown>
-  <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
-    Custom toggle
-  </Dropdown.Toggle>
-  <Dropdown.Menu as={CustomMenu}>
-    <Dropdown.Item eventKey="1">Red</Dropdown.Item>
-    <Dropdown.Item eventKey="2">Blue</Dropdown.Item>
-    <Dropdown.Item eventKey="3" active>
-      Orange
-    </Dropdown.Item>
-    <Dropdown.Item eventKey="1">Red-Orange</Dropdown.Item>
-  </Dropdown.Menu>
-</Dropdown>
-            </div> */}
+            <div className='form-group'>
+             <label> Category </label>
+          <select className="form-select">
+          <option value="" disabled={true} selected>Choose the category</option>
+            <option value="Fees">fees</option>
+            <option value="Transport">Transport</option>
+            <option value=" Food">Food</option>
+            <option value="Trip">Trip</option>
+          </select>
+         </div>
             <div className="form-group">
           <label>Description</label>
             <textarea
               type="text"
               className="form-control"
-              placeholder="Enter the amount"
+              placeholder="Tell us more"
             />
             </div>
           <div className="mt-3 buttons-container">
-            <button className="btn">Save Account</button>
+            <button className="btn">Add New</button>
           </div>
         </form>
         </div>
