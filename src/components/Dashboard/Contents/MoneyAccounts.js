@@ -7,9 +7,20 @@ import Balance from "../../placeholders/Balance";
 import CircularPie from "./Charts/CircularPie";
 import LineChart from "./Charts/LineChart";
 import Expenses from "./Expenses";
+import AddNewIncome from "../Contents/Modals/AddNewIncome";
+import AddNewExpense from "../Contents/Modals/AddNewExpense";
 
 function MoneyAccounts() {
   const context = useContext(UserMainContext);
+  const [showNewIncomeModal, setShowNewIncomeModal] = useState(false);
+  const [showNewExpenseModal, setShowNewExpenseModal] = useState(false);
+
+  const handleCloseNewIncomeModal = () => setShowNewIncomeModal(false);
+  const handleShowNewIncomeModal = () => setShowNewIncomeModal(true);
+
+  const handleCloseNewExpenseModal = () => setShowNewExpenseModal(false);
+  const handleShowNewExpenseModal = () => setShowNewExpenseModal(true);
+
   const [isLoadingAccountContents, setIsLoadingAccountContents] =
     useState(true);
   return (
@@ -77,6 +88,14 @@ function MoneyAccounts() {
           </div>
         </div>
       </div>
+      <AddNewIncome
+        showNewIncomeModal={showNewIncomeModal}
+        handleCloseNewIncomeModal={handleCloseNewIncomeModal}
+      />
+      <AddNewExpense
+        showNewExpenseModal={showNewExpenseModal}
+        handleCloseNewExpenseModal={handleCloseNewExpenseModal}
+      />
     </div>
   );
 }

@@ -20,7 +20,7 @@ function Sidebar({}) {
   const [isLoadingMoneyAccounts, setIsLoadingMoneyAccounts] = useState(true);
 
   const handleCloseSourceOfMoneyModal = () => setShowSourceOfMoneyModal(false);
-  const handleShowSourceOfMoneModal = () => setShowSourceOfMoneyModal(true);
+  const handleShowSourceOfMoneyModal = () => setShowSourceOfMoneyModal(true);
 
   useEffect(() => {
     let sub = true;
