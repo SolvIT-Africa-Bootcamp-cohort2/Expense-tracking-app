@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Chart from "react-apexcharts";
+import LChart from "../../../placeholders/LChart";
 
 export class LineChart extends Component {
   constructor(props) {
@@ -103,11 +104,15 @@ export class LineChart extends Component {
   render() {
     return (
       <div>
-        <Chart
-          options={this.state.options}
-          series={this.state.series}
-          type="line"
-        />
+        {this.props.isLoadingAccountContents ? (
+          <LChart />
+        ) : (
+          <Chart
+            options={this.state.options}
+            series={this.state.series}
+            type="line"
+          />
+        )}
       </div>
     );
   }

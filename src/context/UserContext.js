@@ -4,7 +4,7 @@ export const UserMainContext = createContext();
 
 function UserContext({ children }) {
   const [token, setToken] = useState(null);
-  const [activeTab, setActiveTab] = useState("");
+  const [activeTab, setActiveTab] = useState({ id: null, name: null });
   return (
     <UserMainContext.Provider
       value={{

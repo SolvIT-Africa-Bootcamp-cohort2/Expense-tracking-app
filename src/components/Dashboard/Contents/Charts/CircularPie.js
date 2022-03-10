@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Chart from "react-apexcharts";
+import CPie from "../../../placeholders/CPie";
 
 export class CircularPie extends Component {
   constructor(props) {
@@ -43,11 +44,15 @@ export class CircularPie extends Component {
   render() {
     return (
       <div>
-        <Chart
-          options={this.state.options}
-          series={this.state.series}
-          type="pie"
-        />
+        {this.props.isLoadingAccountContents ? (
+          <CPie />
+        ) : (
+          <Chart
+            options={this.state.options}
+            series={this.state.series}
+            type="pie"
+          />
+        )}
       </div>
     );
   }

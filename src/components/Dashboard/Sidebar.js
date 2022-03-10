@@ -4,17 +4,20 @@ import { FiLogOut, FiPlus, FiChevronRight } from "react-icons/fi";
 import { AiFillDownSquare, AiFillFund, AiOutlineUser } from "react-icons/ai";
 // import { FiWind,FiGrid, FiShoppingBag,  } from "react-icons/fi";
 import AddSourceOfMoney from "./Contents/Modals/AddSourceOfMoney";
+
 import { logout } from "../../helpers/logout";
 import { UserMainContext } from "../../context/UserContext";
 import Axios from "axios";
 import { backendUrl } from "../../controller/Config";
+import MoneyAccounts from "../placeholders/MoneyAccounts";
 
-function Sidebar() {
+function Sidebar({}) {
   const context = useContext(UserMainContext);
   const [showSourceOfMoneyModal, setShowSourceOfMoneyModal] = useState(false);
   const [showIncomeMenus, setShowIncomeMenus] = useState(false);
   const [showExpenseMenus, setShowExpenseMenus] = useState(false);
   const [moneyAccounts, setMoneyAccounts] = useState([]);
+  const [isLoadingMoneyAccounts, setIsLoadingMoneyAccounts] = useState(true);
 
   const handleCloseSourceOfMoneyModal = () => setShowSourceOfMoneyModal(false);
   const handleShowSourceOfMoneModal = () => setShowSourceOfMoneyModal(true);
@@ -29,11 +32,23 @@ function Sidebar() {
       })
         .then((res) => {
           if (sub) {
-            setMoneyAccounts(res.data.accounts);
+            if (res.data.accounts) {
+              setMoneyAccounts();
+              setTimeout(() => {
+                if (sub) {
+                  setIsLoadingMoneyAccounts(false);
+                }
+              }, 2000);
+            }
           }
         })
         .catch((error) => {
           console.log(error);
+          setTimeout(() => {
+            if (sub) {
+              setIsLoadingMoneyAccounts(false);
+            }
+          }, 2000);
         });
     }
     return () => {
@@ -53,25 +68,29 @@ function Sidebar() {
             <FiPlus color="#fff" />
           </div>
         </div>
-        <div className="money-account-container">
-          <ul className="sidebar-items">
-            <li
-              onClick={() => context.setActiveTab("")}
-              className={context.activeTab === "" ? "active" : ""}
-            >
-              All accounts
-            </li>
-            {moneyAccounts.map((account, id) => (
-              <li key={id}>{account.accountName}</li>
-            ))}
-          </ul>
-        </div>
+        {isLoadingMoneyAccounts ? (
+          <MoneyAccounts />
+        ) : (
+          <div className="money-account-container">
+            <ul className="sidebar-items">
+              <li
+                onClick={() => context.setActiveTab({ id: null, name: null })}
+                className={context.activeTab.name === null ? "active" : ""}
+              >
+                All accounts
+              </li>
+              {moneyAccounts.map((account, id) => (
+                <li key={id}>{account.accountName}</li>
+              ))}
+            </ul>
+          </div>
+        )}
         <hr />
         <ul className="menu-container">
           <li
-            className={context.activeTab === "incomes" ? "active" : ""}
+            className={context.activeTab.name === "incomes" ? "active" : ""}
             onClick={() => {
-              context.setActiveTab("incomes");
+              context.setActiveTab({ id: null, name: "incomes" });
             }}
           >
             <AiFillDownSquare size={20} />

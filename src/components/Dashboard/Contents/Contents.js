@@ -1,11 +1,11 @@
 import React from "react";
 import "../../../styles/contents.scss";
-import AllAccounts from "./AllAccounts";
+import MoneyAccounts from "./MoneyAccounts";
 
 function Contents() {
   return (
     <div className="contents-main-container">
-      <AllAccounts />
+      <MoneyAccounts />
     </div>
   );
 }

@@ -69,6 +69,11 @@
 
   .expense-buttons-container {
     margin: 15px 0px;
+    @include flex-space;
+    div {
+      width: 48%;
+      height: 30px;
+    }
     button {
       width: 50%;
       padding: 5px;
