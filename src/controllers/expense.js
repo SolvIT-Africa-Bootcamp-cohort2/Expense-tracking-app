@@ -1,5 +1,5 @@
 const {Transaction} = require("../models/Transaction").default;
-const chalk = require("chalk");
+import { queryIncludes } from "../utils/queryIncludes";
 
 /**
  * 
@@ -7,13 +7,17 @@ const chalk = require("chalk");
 */
 const getExpenses = async (req,res, next) =>{
     try {
-        if(req.query && Object.keys(req.query).length !== 0){
+        console.log(queryIncludes(req.query,"accountId"))
+        if(queryIncludes(req.query,"from")){
             return getExpenseFromDate(req,res)
+        }else if (queryIncludes(req.query,"accountId")) {
+            return getExpenseByAccount(req,res)
+        } else {
+            const expenses = await Transaction.find({type:"expense",userId: req.user["id"]});
+            res.status(200).send({expenses:expenses})   
         }
-        const expenses = await Transaction.find({type:"expense",userId: req.user["id"]});
-        res.status(200).send(expenses)
     } catch (error) {
-        console.log(chalk.red(error));
+        //console.log(chalk.red(error));
         res.status(404).send({Message:"No expenses were found"})
     }
 }
@@ -51,22 +55,25 @@ const getExpenseFromDate = async(req,res,next) =>{
     } catch (error) {
         res.status(404).send({Message: "No Expense between these dates"})
     }
-
 }
 /**
  * 
  *  Controller to get  Expense from a particular account
 */
 
-
 const getExpenseByAccount = async(req,res, next) =>{
-    const {accountId } =req.query;
-    const expenses = await Transaction.find({
-        type:"expense",
-        userId: req.user["id"],
-        accountId: accountId
-    })
-    res.status(200).send({expenses:expenses})
+    try {
+        const {accountId } =req.query;
+        const expenses = await Transaction.find({
+            type:"expense",
+            userId: req.user["id"],
+            accountId: accountId
+        })
+        res.status(200).send({expenses:expenses})  
+    } catch (error) {
+        res.send(404).send({Message:"No expenses from this account"})
+    }
+
 }
 
 

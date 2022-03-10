@@ -7,7 +7,7 @@ const schema = Schema({
 },{
     versionKey:false
 })
- 
+
 const Category = model("Category",schema);
 
 const validateCategory = (category) =>{
