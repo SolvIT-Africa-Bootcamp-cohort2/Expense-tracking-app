@@ -30,6 +30,11 @@
     }
   }
 
+  .money-account-container {
+    height: 300px;
+    overflow-y: auto;
+  }
+
   .sidebar-items {
     padding: 0px;
     margin: 0px;
@@ -83,17 +88,21 @@
       text-transform: capitalize;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: space-between;
       transition: 0.5s;
       color: $textGray;
+      padding-right: 5px;
 
       span {
         margin-left: 5px;
+        width: 100%;
       }
+
       &:hover {
         background-color: $darkGray;
         color: $red;
         padding: 0.5rem 0px;
+        padding-right: 5px;
         border-top-right-radius: 25px;
         border-bottom-right-radius: 25px;
         margin-right: 10px;
@@ -104,6 +113,8 @@
     li.active {
       background-color: $darkGray;
       color: $red;
+      padding: 0.5rem 0px;
+      padding-right: 5px;
       border-top-right-radius: 25px;
       border-bottom-right-radius: 25px;
       margin-right: 10px;
@@ -117,6 +128,7 @@
     padding: 1rem 2rem;
     border-top: 1px solid $darkGray;
     .footer-contents {
+      cursor: pointer;
       @include flex-space;
       span {
         font-size: 14px;
