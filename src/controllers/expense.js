@@ -1,6 +1,10 @@
 const {Transaction} = require("../models/Transaction").default;
 const chalk = require("chalk");
 
+/**
+ * 
+ *  Controller to get all Expense
+*/
 const getExpenses = async (req,res, next) =>{
     try {
         if(req.query && Object.keys(req.query).length !== 0){
@@ -14,6 +18,10 @@ const getExpenses = async (req,res, next) =>{
     }
 }
 
+/**
+ * 
+ *  Controller to get one Expense
+*/
 const getOneExpense = async (req,res, next) =>{
     try {
         const id = req.params.id;
@@ -24,35 +32,67 @@ const getOneExpense = async (req,res, next) =>{
     }
 }
 
+/**
+ * 
+ *  Controller to get  Expenses between 2 dates
+*/
 const getExpenseFromDate = async(req,res,next) =>{
-    const {from, to } =req.query;
-    const newTo = new Date(to).getDay();
-    console.log( newTo)
+    try {
+        const {from, to } =req.query;
+        const expenses = await Transaction.find({
+            created_at:{
+                $gte: new Date(from).toISOString(),
+                $lte: new Date(to).toISOString()
+            },
+            type:"expense",
+            userId: req.user["id"]
+        })
+        expenses.length > 0?res.status(200).send({expenses:expenses}):res.status(200).send({Message:"No expenses created yet"})
+    } catch (error) {
+        res.status(404).send({Message: "No Expense between these dates"})
+    }
+
+}
+/**
+ * 
+ *  Controller to get  Expense from a particular account
+*/
+
+
+const getExpenseByAccount = async(req,res, next) =>{
+    const {accountId } =req.query;
     const expenses = await Transaction.find({
-        created_at:{
-            $gte: new Date(from).toISOString(),
-            $lte: new Date(to).toISOString()
-        },
         type:"expense",
-        userId: req.user["id"]
+        userId: req.user["id"],
+        accountId: accountId
     })
     res.status(200).send({expenses:expenses})
 }
 
+
+/**
+ * 
+ *  Controller to add new Expense
+*/
 const addExpense = async (req,res, next) =>{
   try {
-    const {description, amount , category} = req.body;
+    const {description, amount , category,accountId} = req.body;
     
    const newExpense = new Transaction({
-       description,amount,category, userId: req.user["id"], type:"expense"
+       description,amount,category, userId: req.user["id"], type:"expense",accountId
    })
    newExpense.save();
-   res.status(201).send({Message:"Expense added csuccessfully"})   
+   res.status(201).send({Message:"Expense added successfully"})   
   } catch (error) {
       //console.log(chalk.red(error))
       res.status(500).send({Message:"Error adding expense"})
   }
 }
+
+/**
+ * 
+ *  Controller to update  Expense
+*/
 
 const updateExpense = async(req,res,next) =>{
 	try {
@@ -79,6 +119,10 @@ const updateExpense = async(req,res,next) =>{
 	}   
 }
 
+/**
+ * 
+ *  Controller to delete Expense
+*/
 const deleteExpense = async(req,res, next) =>{
         try {
                 await Transaction.deleteOne({ _id: req.params.id })
@@ -88,10 +132,12 @@ const deleteExpense = async(req,res, next) =>{
         }    
 }
 
+
 module.exports = {
     getExpenses,
     getOneExpense,
     getExpenseFromDate,
+    getExpenseByAccount,
     addExpense,
     updateExpense,
     deleteExpense

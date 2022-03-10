@@ -4,17 +4,17 @@ const {Account} = require ('../models/Accounts').default
 
 
 const  createAccount = async (req, res)=> {
-   const  {accountName} = req.body
-
-    const accounts = new Account ({
-        accountName,userId : req.user["id"]
-
-    })
     try {
-
-        await accounts.save();
-        res.send ({Message:"Account is successfully created"});
-        // console.log ("Account is successfully created");
+        const  {accountName} = req.body
+        const accountExists = await Account.findOne({userId : req.user ["id"], accountName:accountName});
+             
+            if(accountExists) return res.status(202).send({Message:"Account already exists"})
+            const accounts = new Account ({
+                accountName,userId : req.user["id"]
+            })
+                await accounts.save();
+                res.send ({Message:"Account is successfully created"});
+                // console.log ("Account is successfully created");
     }
     catch (error) {
         // console.log(error)
@@ -27,7 +27,7 @@ const  createAccount = async (req, res)=> {
 const getAccounts =async (req,res)=>{
     try {
         const accounts = await Account.find({userId : req.user ["id"] });
-    res.status(200).send({accounts:accounts});
+        accounts.length > 0?res.status(200).send({accounts:accounts}):res.status(200).send({Message:"No accounts created yet"})
     } catch (error) {
         // console.log(error);
         res.status(404).send ({Message:"No account created yet"})
