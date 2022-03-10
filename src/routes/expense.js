@@ -6,17 +6,17 @@ const {validateInput} = require("../middlewares/validateInput")
 const {validateTransaction} = require("../models/Transaction").default
 const {getExpenses , getOneExpense, getExpenseFromDate, addExpense,deleteExpense, updateExpense} = require("../controllers/expense.js");
 
-router.all("/*",verifyToken)
+// router.all("/*",verifyToken)
 
 router.route("/")
-      .get(getExpenses)
-      .post(validateInput(validateTransaction), addExpense)
+      .get(verifyToken,getExpenses)
+      .post(verifyToken,validateInput(validateTransaction), addExpense)
 
-router.get("/:from-:to",getExpenseFromDate);
+router.get("/:from-:to",verifyToken,getExpenseFromDate);
 
-router.get("/:id",getOneExpense)
+router.get("/:id",verifyToken,getOneExpense)
 
-router.put("/:id",updateExpense)     
-router.delete("/:id",deleteExpense)
+router.put("/:id",verifyToken,updateExpense)     
+router.delete("/:id",verifyToken,deleteExpense)
 
 module.exports = router;
