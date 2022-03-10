@@ -43,7 +43,7 @@ const getOneAccount =async (req,res)=>{
         const id= req.params.id;
             const oneAccount= await Account.findOne({_id:id}) ;
             if(oneAccount){
-                res.status(200).send(oneAccount);
+                res.status(200).send({account:oneAccount});
             } 
     } catch (error) {
         res.send(`Account with id:${req.params.id} is not found`) ;
