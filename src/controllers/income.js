@@ -4,7 +4,7 @@ const chalk = require("chalk");
 const getIncome = async (req,res, next) =>{
     try {
         const incomes = await Transaction.find({type:"income",userId: req.user["id"]});
-        if(!incomes)
+        if(incomes.length=0)
           return res.status(204).send({Message:"No incomes currently"})
         res.status(200).send({incomes:incomes})
     } catch (error) {
