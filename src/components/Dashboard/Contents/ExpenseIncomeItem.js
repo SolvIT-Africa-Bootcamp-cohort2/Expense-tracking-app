@@ -15,7 +15,7 @@ function ExpenseIncomeItem({ expense }) {
             <span className="amount">+ {expense.amount} rwf</span>
           </td>
           <td>
-            <span className="date"> {expense.date}</span>
+            <span className="date"> {expense.created_at}</span>
           </td>
           <td>
             <span className="category">{expense.category}</span>
@@ -43,7 +43,7 @@ function ExpenseIncomeItem({ expense }) {
             <span className="amount">- {expense.amount} rwf</span>
           </td>
           <td>
-            <span className="date"> {expense.date}</span>
+            <span className="date"> {expense.created_at}</span>
           </td>
           <td>
             <span className="category">{expense.category}</span>

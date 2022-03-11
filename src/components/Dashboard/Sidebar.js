@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import "../../styles/sidebar.scss";
-import { FiLogOut, FiPlus, FiChevronRight } from "react-icons/fi";
+import { FiLogOut, FiPlus, FiChevronRight, FiSettings } from "react-icons/fi";
 import { AiFillDownSquare, AiFillFund, AiOutlineUser } from "react-icons/ai";
 // import { FiWind,FiGrid, FiShoppingBag,  } from "react-icons/fi";
 import AddSourceOfMoney from "./Contents/Modals/AddSourceOfMoney";
@@ -24,7 +24,6 @@ function Sidebar({}) {
 
   useEffect(() => {
     let sub = true;
-    console.log("started");
     if (sub) {
       Axios.get(backendUrl + "/accounts", {
         headers: {
@@ -35,6 +34,7 @@ function Sidebar({}) {
           if (sub) {
             if (res.data.accounts) {
               setMoneyAccounts(res.data.accounts);
+              context.setMoneyAccounts(res.data.accounts);
             }
           }
           setTimeout(() => {
@@ -90,14 +90,44 @@ function Sidebar({}) {
           >
             <AiFillDownSquare size={20} />
             <span>Incomes</span>
-            <FiChevronRight size={20} />
           </li>
-          <li>
+          <li
+            className={context.activeTab.name === "expenses" ? "active" : ""}
+            onClick={() => {
+              context.setActiveTab({ id: null, name: "expenses" });
+            }}
+          >
             <AiFillFund size={20} />
             <span>Expenses</span>
-            <FiChevronRight size={20} />
           </li>
-          <li>
+          <li
+            className={
+              context.activeTab.name === "manageCategories" ? "active" : ""
+            }
+            onClick={() => {
+              context.setActiveTab({ id: null, name: "manageCategories" });
+            }}
+          >
+            <FiSettings size={20} />
+            <span>Manage categories</span>
+          </li>
+          <li
+            className={
+              context.activeTab.name === "manageAccounts" ? "active" : ""
+            }
+            onClick={() => {
+              context.setActiveTab({ id: null, name: "manageAccounts" });
+            }}
+          >
+            <FiSettings size={20} />
+            <span>Manage Money Accounts</span>
+          </li>
+          <li
+            className={context.activeTab.name === "profile" ? "active" : ""}
+            onClick={() => {
+              context.setActiveTab({ id: null, name: "profile" });
+            }}
+          >
             <AiOutlineUser size={20} />
             <span>Profile</span>
           </li>

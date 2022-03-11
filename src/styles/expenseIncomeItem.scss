@@ -65,3 +65,9 @@
     color: $textGray;
   }
 }
+
+.nothing-main-container {
+  @include flex-center;
+  flex-direction: column;
+  margin-top: 6rem;
+}

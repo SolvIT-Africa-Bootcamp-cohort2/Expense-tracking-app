@@ -1,116 +1,24 @@
 import React from "react";
 import ExpenseItem from "./ExpenseIncomeItem";
+import { FaJenkins } from "react-icons/fa";
 
-function ExpensesAndIncomeForAccount() {
-  const expenses = [
-    {
-      type: "income",
-      category: "food",
-      amount: "12500",
-      date: "12 feb 2021",
-      description: "Testing description",
-    },
-    {
-      type: "expense",
-      category: "airtime",
-      date: "12 feb 2021",
-      amount: "500",
-      description: "Testing description",
-    },
-    {
-      type: "expense",
-      category: "airtime",
-      date: "12 feb 2021",
-      amount: "500",
-      description: "Testing description",
-    },
-    {
-      type: "expense",
-      category: "airtime",
-      date: "12 feb 2021",
-      amount: "500",
-      description: "Testing description",
-    },
-    {
-      type: "expense",
-      category: "airtime",
-      date: "12 feb 2021",
-      amount: "500",
-      description: "Testing description",
-    },
-    {
-      type: "expense",
-      category: "airtime",
-      date: "12 feb 2021",
-      amount: "500",
-      description: "Testing description",
-    },
-    {
-      type: "expense",
-      category: "airtime",
-      date: "12 feb 2021",
-      amount: "500",
-      description: "Testing description",
-    },
-    {
-      type: "expense",
-      category: "airtime",
-      date: "12 feb 2021",
-      amount: "500",
-      description: "Testing description",
-    },
-    {
-      type: "expense",
-      category: "airtime",
-      date: "12 feb 2021",
-      amount: "500",
-      description: "Testing description",
-    },
-    {
-      type: "expense",
-      category: "airtime",
-      date: "12 feb 2021",
-      amount: "500",
-      description: "Testing description",
-    },
-    {
-      type: "expense",
-      category: "airtime",
-      date: "12 feb 2021",
-      amount: "500",
-      description: "Testing description",
-    },
-    {
-      type: "expense",
-      category: "airtime",
-      date: "12 feb 2021",
-      amount: "500",
-      description: "Testing description",
-    },
-    {
-      type: "expense",
-      category: "airtime",
-      date: "12 feb 2021",
-      amount: "500",
-      description: "Testing description",
-    },
-    {
-      type: "expense",
-      category: "airtime",
-      date: "12 feb 2021",
-      amount: "500",
-      description: "Testing description",
-    },
-  ];
+function ExpensesAndIncomeForAccount({ expensesAndIncome }) {
   return (
     <div>
-      <table className="table">
-        <tbody>
-          {expenses.map((expense, i) => (
-            <ExpenseItem expense={expense} />
-          ))}
-        </tbody>
-      </table>
+      {expensesAndIncome.length > 0 ? (
+        <table className="table">
+          <tbody>
+            {expensesAndIncome.map((expense, i) => (
+              <ExpenseItem expense={expense} />
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <div className="nothing-main-container">
+          <FaJenkins size={100} color="#ccc" />
+          <p style={{ color: "#808080" }}>No records found!</p>
+        </div>
+      )}
     </div>
   );
 }

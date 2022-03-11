@@ -16,6 +16,7 @@ function MoneyAccounts() {
   const context = useContext(UserMainContext);
   const [showNewIncomeModal, setShowNewIncomeModal] = useState(false);
   const [showNewExpenseModal, setShowNewExpenseModal] = useState(false);
+  const [total, setTotal] = useState("0.000");
 
   const handleCloseNewIncomeModal = () => setShowNewIncomeModal(false);
   const handleShowNewIncomeModal = () => setShowNewIncomeModal(true);
@@ -26,31 +27,46 @@ function MoneyAccounts() {
   const [isLoadingAccountContents, setIsLoadingAccountContents] =
     useState(true);
   const [expensesAndIncome, setExpensesAndIncome] = useState([]);
-  useEffect(() => {
-    let sub = true;
+
+  const calulateTotal = (expensesAndIncome) => {
+    let amount = 0;
+    for (let i = 0; i < expensesAndIncome.length; i++) {
+      amount += expensesAndIncome[i].amount;
+    }
+    if (amount > 0) {
+      setTotal(amount);
+    }
+  };
+
+  const getTransactions = () => {
     if (context.activeTab.name === null) {
       //select from all accounts
-      Axios.get(backendUrl + "/expense", {
+      Axios.get(backendUrl + "/transaction", {
         headers: {
           Authorization: `Bearer ${context.token}`,
         },
       })
         .then((res) => {
+          console.log("result", res.data);
           if (!res.data.Message) {
-            setExpensesAndIncome(res.data);
+            setTimeout(() => {
+              setExpensesAndIncome(res.data.transaction);
+              calulateTotal(res.data.transaction);
+              setIsLoadingAccountContents(false);
+            }, 2000);
           }
-          setIsLoadingAccountContents(false);
         })
         .catch((error) => {
           setIsLoadingAccountContents(false);
-          console.log(error);
+          console.log(error.response);
         });
     } else {
       setIsLoadingAccountContents(false);
     }
-    return () => {
-      sub = false;
-    };
+  };
+
+  useEffect(() => {
+    getTransactions();
   }, []);
   return (
     <div>
@@ -90,8 +106,8 @@ function MoneyAccounts() {
                 ) : (
                   <>
                     <div className="account-balance-container">
-                      <h2>123,500 rwf</h2>
-                      <span>12 feb 2020 - now</span>
+                      <h2>{total} Rwf</h2>
+                      <span>Total balance</span>
                     </div>
                     <div className="expense-buttons-container">
                       <button onClick={() => setShowNewExpenseModal(true)}>
@@ -105,9 +121,11 @@ function MoneyAccounts() {
                 )}
                 <LineChart
                   isLoadingAccountContents={isLoadingAccountContents}
+                  expensesAndIncome={expensesAndIncome}
                 />
                 <CircularPie
                   isLoadingAccountContents={isLoadingAccountContents}
+                  expensesAndIncome={expensesAndIncome}
                 />
               </div>
             </div>
@@ -118,7 +136,9 @@ function MoneyAccounts() {
                 {isLoadingAccountContents ? (
                   <AccountExpenses />
                 ) : (
-                  <ExpensesAndIncomeForAccount />
+                  <ExpensesAndIncomeForAccount
+                    expensesAndIncome={expensesAndIncome}
+                  />
                 )}
               </div>
             </div>
@@ -128,10 +148,12 @@ function MoneyAccounts() {
       <AddNewIncome
         showNewIncomeModal={showNewIncomeModal}
         handleCloseNewIncomeModal={handleCloseNewIncomeModal}
+        getTransactions={getTransactions}
       />
       <AddNewExpense
         showNewExpenseModal={showNewExpenseModal}
         handleCloseNewExpenseModal={handleCloseNewExpenseModal}
+        getTransactions={getTransactions}
       />
     </div>
   );
