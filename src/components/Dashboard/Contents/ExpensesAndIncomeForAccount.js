@@ -1,15 +1,16 @@
 import React from "react";
-import ExpenseItem from "./ExpenseIncomeItem";
+import ExpenseIncomeItem from "./ExpenseIncomeItem";
 import { FaJenkins } from "react-icons/fa";
+import "../../../styles/expenseIncomeItem.scss";
 
 function ExpensesAndIncomeForAccount({ expensesAndIncome }) {
   return (
     <div>
       {expensesAndIncome.length > 0 ? (
-        <table className="table">
-          <tbody>
+        <table className="w-100">
+          <tbody className="expenses-main-container">
             {expensesAndIncome.map((expense, i) => (
-              <ExpenseItem expense={expense} />
+              <ExpenseIncomeItem expense={expense} />
             ))}
           </tbody>
         </table>

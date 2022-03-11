@@ -42,14 +42,18 @@ function AddNewIncome({
       amountRef.current.classList.remove("is-invalid");
     }
 
-    if (accountId.trim() === "" && context.activeTab.id === null) {
-      setIsSubmitting(false);
-      setaccountIdError("Please select money account");
-      accountIdRef.current.classList.add("is-invalid");
-      return;
+    if (context.activeTab.id === null && context.activeTab.name === null) {
+      if (accountId.trim() === "") {
+        setIsSubmitting(false);
+        setaccountIdError("Please select money account");
+        accountIdRef.current.classList.add("is-invalid");
+        return;
+      } else {
+        setaccountIdError("");
+        accountIdRef.current.classList.remove("is-invalid");
+      }
     } else {
-      setaccountIdError("");
-      accountIdRef.current.classList.remove("is-invalid");
+      setAccountId(context.activeTab.id);
     }
 
     if (categoryName.trim() === "") {
@@ -107,8 +111,19 @@ function AddNewIncome({
   };
 
   useEffect(() => {
+    setAmount("");
+    setAccountId("");
+    setCategoryName("");
+    setDescription("");
+    setErrorMessage("");
+    setIsSubmitting("");
+    setAmountError("");
+    setaccountIdError("");
+    setCategoryNameError("");
+    setDescriptionError("");
+
     getCategories();
-  }, []);
+  }, [showNewIncomeModal]);
 
   const getCategories = () => {
     Axios.get(backendUrl + "/category", {

@@ -1,16 +1,12 @@
 import React from "react";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { FiEdit2 } from "react-icons/fi";
-import "../../../styles/expenseIncomeItem.scss";
 
 function ExpenseIncomeItem({ expense }) {
   return (
-    <div className="expenses-main-container">
+    <>
       {expense.type == "income" ? (
         <tr className="income-row">
-          <td>
-            <div className="transaction-dot"></div>
-          </td>
           <td>
             <span className="amount">+ {expense.amount} rwf</span>
           </td>
@@ -37,9 +33,6 @@ function ExpenseIncomeItem({ expense }) {
       ) : (
         <tr className="expense-row">
           <td>
-            <div className="transaction-dot"></div>
-          </td>
-          <td>
             <span className="amount">- {expense.amount} rwf</span>
           </td>
           <td>
@@ -63,7 +56,7 @@ function ExpenseIncomeItem({ expense }) {
           </td>
         </tr>
       )}
-    </div>
+    </>
   );
 }
 
