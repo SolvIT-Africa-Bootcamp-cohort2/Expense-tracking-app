@@ -8,7 +8,7 @@ import { backendUrl } from "../../../../controller/Config";
 function AddNewIncome({
   showNewIncomeModal,
   handleCloseNewIncomeModal,
-  getTransactions,
+  getTransactions2,
 }) {
   const context = useContext(UserMainContext);
   const [amount, setAmount] = useState("");
@@ -92,7 +92,7 @@ function AddNewIncome({
       .then((res) => {
         console.log(res.data);
         handleCloseNewIncomeModal();
-        getTransactions();
+        getTransactions2();
         setIsSubmitting(false);
       })
       .catch((error) => {

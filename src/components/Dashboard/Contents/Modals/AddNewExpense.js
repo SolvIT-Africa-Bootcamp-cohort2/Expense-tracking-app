@@ -8,7 +8,7 @@ import { UserMainContext } from "../../../../context/UserContext";
 function AddNewExpense({
   showNewExpenseModal,
   handleCloseNewExpenseModal,
-  getTransactions,
+  getTransactions2,
 }) {
   const context = useContext(UserMainContext);
   const [amount, setAmount] = useState("");
@@ -92,7 +92,7 @@ function AddNewExpense({
       .then((res) => {
         console.log(res.data);
         handleCloseNewExpenseModal();
-        getTransactions();
+        getTransactions2();
         setIsSubmitting(false);
       })
       .catch((error) => {

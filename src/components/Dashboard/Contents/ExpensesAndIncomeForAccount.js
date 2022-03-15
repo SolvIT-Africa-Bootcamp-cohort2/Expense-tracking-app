@@ -3,17 +3,28 @@ import ExpenseIncomeItem from "./ExpenseIncomeItem";
 import { FaJenkins } from "react-icons/fa";
 import "../../../styles/expenseIncomeItem.scss";
 
-function ExpensesAndIncomeForAccount({ expensesAndIncome }) {
+function ExpensesAndIncomeForAccount({
+  expensesAndIncome,
+  setTransactionToBeDeleted,
+  setShowDeleteAlert,
+}) {
   return (
     <div>
       {expensesAndIncome.length > 0 ? (
-        <table className="w-100">
-          <tbody className="expenses-main-container">
-            {expensesAndIncome.map((expense, i) => (
-              <ExpenseIncomeItem expense={expense} />
-            ))}
-          </tbody>
-        </table>
+        <div className="table-responsive">
+          <table className="w-100">
+            <tbody className="expenses-main-container">
+              {expensesAndIncome.map((expense, i) => (
+                <ExpenseIncomeItem
+                  key={i}
+                  expense={expense}
+                  setTransactionToBeDeleted={setTransactionToBeDeleted}
+                  setShowDeleteAlert={setShowDeleteAlert}
+                />
+              ))}
+            </tbody>
+          </table>
+        </div>
       ) : (
         <div className="nothing-main-container">
           <FaJenkins size={100} color="#ccc" />

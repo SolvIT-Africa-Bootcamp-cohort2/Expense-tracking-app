@@ -49,7 +49,7 @@ function Sidebar({}) {
     return () => {
       sub = false;
     };
-  }, [moneyAccounts]);
+  }, []);
 
   return (
     <>

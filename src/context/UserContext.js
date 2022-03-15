@@ -7,6 +7,8 @@ function UserContext({ children }) {
   const [activeTab, setActiveTab] = useState({ id: null, name: null });
   const [categories, setCategories] = useState([]);
   const [moneyAccounts, setMoneyAccounts] = useState([]);
+  const [progressDeletion, setProgressDeletion] = useState([]);
+  const [deletedTranscations, setDeletedTransactions] = useState([]);
   return (
     <UserMainContext.Provider
       value={{
@@ -18,6 +20,10 @@ function UserContext({ children }) {
         setCategories,
         moneyAccounts,
         setMoneyAccounts,
+        progressDeletion,
+        setProgressDeletion,
+        deletedTranscations,
+        setDeletedTransactions,
       }}
     >
       {children}
