@@ -2,42 +2,162 @@ import React from 'react'
 import "../../styles/home.scss";
 import {Nav, Navbar, Container} from 'react-bootstrap'
 
+// import "../../css/vendor/bootstrap.min.css";
+// import "../css/all.min.css";
+// import "../../css/fonts/flaticon.css";
+// import "../../css/vendor/animate.min.css";
+// import "../../css/vendor/aos.css";
+// import "../../css/vendor/owl.carousel.min.css";
+// import "../../css/vendor/slick.css";
+// import "../../css/vendor/jquery.fancybox.min.css";
+
+// import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&amp;display=swap";
+
+
+
 function Home() {
   return (
     <div className='home-main-container'>
         <div className="home-background-container">
-        < div className='header1' >
-            <div></div>
-            <div></div>
-      <div  class="row">
-  <div class="col-xl">
-    <Navbar class="navbar navbar-expand-sm bg-warning   fixed-top" >
-    <Container>
-    <Navbar.Brand href="#home"><img
-        src={(".../../assets/logo.png")}
-        width="30"
-        height="30"
-        className="d-inline-block align-top"
-        alt="logo"
-      />
-    </Navbar.Brand>
-    <Nav className="me-auto">
-      <Nav.Link href="#home">Home</Nav.Link>
-      <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" href="#about">About us</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#section2">Contact us</a>
-    </li>
-    </ul>
-      <Nav.Link href="/Login">Login</Nav.Link>
-      <Nav.Link href="/register">Register</Nav.Link>
-    </Nav>
-    </Container>
-  </Navbar>
-    </div>
-     </div>
+        <header class="navbar navbar-sticky navbar-expand-lg navbar-dark">
+            <div class="container position-relative">
+                <a class="navbar-brand" href="index.html">
+                    <img class="navbar-brand-regular" src={require("../../assets/logo.png")} alt="brand-logo" />
+                    <img class="navbar-brand-sticky" src="assets/img/logo/logo.png" alt="sticky brand-logo" />
+                </a>
+                <button class="navbar-toggler d-lg-none" type="button" data-toggle="navbarToggler" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="navbar-inner">
+                   
+                    <button class="navbar-toggler d-lg-none" type="button" data-toggle="navbarToggler" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <nav>
+                        <ul class="navbar-nav" id="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle h4" href="javascript:;" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Home
+                                </a>
+                                {/* <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li>
+                                        <a class="dropdown-item" href="index.html">Homepage-1</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="index-2.html">Homepage-2</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="index-3.html">Homepage-3</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="index-4.html">Homepage-4</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="index-5.html">Homepage-5</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="index-6.html">Homepage-6</a>
+                                    </li>
+                                </ul> */}
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link scroll h4" href="#features">Features</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle h4" href="javascript:;" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Pages
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    {/* <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="javascript:;">Inner Pages<span class="badge badge-pill badge-warning ml-2">New</span></a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a class="dropdown-item" href="pricing.html">Pricing </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="download.html">Download</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="newsletter.html">Newsletter</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="thank-you.html">Thank you</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="coming-soon.html">Coming Soon</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="404.html">404</a>
+                                            </li>
+                                        </ul>
+                                    </li> */}
+                                    {/* <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="javascript:;">Blog Pages</a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a class="dropdown-item" href="blog-two-column.html">Blog- 2 Column</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="blog-three-column.html">Blog- 3 Column</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="blog-left-sidebar.html">Blog- Left Sidebar</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="blog-right-sidebar.html">Blog- Right Sidebar</a>
+                                            </li>
+                                        </ul>
+                                    </li> */}
+                                    {/* <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="javascript:;">Blog Details</a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a class="dropdown-item" href="blog-details-left-sidebar.html">Blog Details- Left Sidebar</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="blog-details-right-sidebar.html">Blog Details- Right Sidebar</a>
+                                            </li>
+                                        </ul>
+                                    </li> */}
+                                    <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="javascript:;">Accounts<span class="badge badge-pill badge-warning ml-2">New</span></a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a class="dropdown-item" href="/login">Login</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="/register">Register</a>
+                                            </li>
+                                            {/* <li>
+                                                <a class="dropdown-item" href="forgot.html">Reset Password</a>
+                                            </li> */}
+                                        </ul>
+                                    </li>
+                                    {/* <li>
+                                        <a class="dropdown-item" href="reviews.html">Reviews</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="faq.html">FAQ</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="contact.html">Contact</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item disabled" href="#">More Coming Soon</a>
+                                    </li> */}
+                                </ul>
+                            </li>
+                            {/* <li class="nav-item">
+                                <a class="nav-link scroll" href="#screenshots">Screenshots</a>
+                            </li> */}
+                            {/* <li class="nav-item">
+                                <a class="nav-link scroll" href="#pricing">Pricing</a>
+                            </li> */}
+                            <li class="nav-item">
+                                <a class="nav-link scroll h4 "  href="#contact">Contact</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
     
      <div class="row">
         <div class="col-md-6">
@@ -103,7 +223,7 @@ function Home() {
                   <img className="photo" src={require("../../assets/expense.png")} alt="Expense" /> 
                 </div>
              </div>
-             <div class="row">
+             {/* <div class="row">
               <div class="col-md-6">
                  <div id="about" class="container-fluid ">
                    <h1>About us</h1>
@@ -141,9 +261,109 @@ function Home() {
         <a href="#"> EXPENSE</a>
     </div>  
   </div>
+  </div> */}
+      
+       <footer className='footer' class="footer-area">
+           
+           <div class="footer-top ptb_100">
+               <div class="container">
+                   <div class="row">
+                       <div class="col-12 col-sm-6 col-lg-3">
+                           
+                           <div class="footer-items">
+                             
+                               <a class="navbar-brand" href="#">
+                                   <img class="logo" src={require("../../assets/logo.png")} alt="logo" />
+                               </a>
+                               <p class="mt-2 mb-3">Expense brings together everything from spending, balances, and budgets to your credit score and more. Access your financial life in one powerful app.</p>
+                              
+                               {/* <div class="social-icons d-flex">
+                                   <a class="facebook" href="#">
+                                       <i class="fab fa-facebook-f"></i>
+                                       <i class="fab fa-facebook-f"></i>
+                                   </a>
+                                   <a class="twitter" href="#">
+                                       <i class="fab fa-twitter"></i>
+                                       <i class="fab fa-twitter"></i>
+                                   </a>
+                                   <a class="google-plus" href="#">
+                                       <i class="fab fa-google-plus-g"></i>
+                                       <i class="fab fa-google-plus-g"></i>
+                                   </a>
+                                   <a class="vine" href="#">
+                                       <i class="fab fa-vine"></i>
+                                       <i class="fab fa-vine"></i>
+                                   </a>
+                               </div> */}
+                           </div>
+                       </div>
+                       <div class="col-12 col-sm-6 col-lg-3">
+                           
+                           <div class="footer-items">
+                              
+                               <h3 class="footer-title mb-2">Useful Links</h3>
+                               <ul>
+                                   <li class="py-2"><a href="#">Home</a></li>
+                                   <li class="py-2"><a href="#">About Us</a></li>
+                                   <li class="py-2"><a href="#">Contact</a></li>
+                               </ul>
+                           </div>
+                       </div>
+                       <div class="col-12 col-sm-6 col-lg-3">
+                           
+                           <div class="footer-items">
+                              
+                               <h3 class="footer-title mb-2">Product Help</h3>
+                               <ul>
+                                   <li class="py-2"><a href="#">FAQ</a></li>
+                                   <li class="py-2"><a href="#">Privacy Policy</a></li>
+                                   <li class="py-2"><a href="#">Support</a></li>
+                                   <li class="py-2"><a href="#">Terms &amp; Conditions</a></li>
+                                   <li class="py-2"><a href="#">Contact</a></li>
+                               </ul>
+                           </div>
+                       </div>
+                       <div class="col-12 col-sm-6 col-lg-3">
+                           
+                           <div class="footer-items">
+                            
+                               <h3 class="footer-title mb-2">Download</h3>
+                            
+                               <div class="button-group store-buttons store-black d-flex flex-wrap">
+                                   <a href="#">
+                                       <img src="assets/img/icon/google-play-black.png" alt="" />
+                                   </a>
+                                   <a href="#">
+                                       <img src="assets/img/icon/app-store-black.png" alt="" />
+                                   </a>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+          
+           <div class="footer-bottom">
+               <div class="container">
+                   <div class="row">
+                       <div class="col-12">
+                          
+                           <div class="copyright-area d-flex flex-wrap justify-content-center justify-content-sm-between text-center py-4">
+                               
+                               <div class="copyright-left">&copy; Copyrights 2022 XPENSE All rights reserved.</div>
+                          
+                               <div class="copyright-right">Made  By <a href="#"> EXPENSE</a></div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </footer>
+      
   </div>
   </div>
   )
 }
+
 
 export default Home
