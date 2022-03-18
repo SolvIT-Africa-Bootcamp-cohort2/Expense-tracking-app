@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { AiTwotoneDelete } from "react-icons/ai";
+import EditExpense from "../Contents/Modals/EditExpense";
 import { FiEdit2 } from "react-icons/fi";
 import moment from "moment";
 import { UserMainContext } from "../../../context/UserContext";
