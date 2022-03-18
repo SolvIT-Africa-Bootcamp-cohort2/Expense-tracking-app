@@ -47,7 +47,19 @@ function AddSourceOfMoney({
       )
         .then((res) => {
           console.log("response", res.data);
-          setIsSubmitting(false);
+          Axios.get(backendUrl + "/accounts", {
+            headers: {
+              Authorization: `Bearer ${context.token}`,
+            },
+          })
+            .then((res) => {
+              if (res.data.accounts) {
+                context.setMoneyAccounts(res.data.accounts);
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+            });
           handleCloseSourceOfMoneyModal();
         })
         .catch((error) => {
@@ -75,6 +87,7 @@ function AddSourceOfMoney({
   useEffect(() => {
     setAccountName("");
     setErrorMessage("");
+    setIsSubmitting(false);
   }, [showSourceOfMoneyModal]);
 
   return (

@@ -58,12 +58,25 @@
     border-radius: 10px;
     @include flex-center-column;
 
-    h2 {
-      color: $blue;
+    .total-income {
+      text-align: center;
+      h2 {
+        color: $blue;
+      }
+      span {
+        color: $textGray;
+        font-size: 12px;
+      }
     }
-    span {
-      color: $textGray;
-      font-size: 12px;
+    .total-expense {
+      text-align: center;
+      h2 {
+        color: $red;
+      }
+      span {
+        color: $textGray;
+        font-size: 12px;
+      }
     }
   }
 

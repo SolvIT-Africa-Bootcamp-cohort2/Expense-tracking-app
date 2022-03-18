@@ -32,6 +32,7 @@ function AddNewIncome({
     e.preventDefault();
     setIsSubmitting(true);
     setErrorMessage("");
+
     if (amount.trim() === "") {
       setIsSubmitting(false);
       setAmountError("Please provide the amount");
@@ -43,7 +44,7 @@ function AddNewIncome({
     }
 
     if (context.activeTab.id === null && context.activeTab.name === null) {
-      if (accountId.trim() === "") {
+      if (accountId.trim() === "" || accountId.trim() === null) {
         setIsSubmitting(false);
         setaccountIdError("Please select money account");
         accountIdRef.current.classList.add("is-invalid");
@@ -65,6 +66,7 @@ function AddNewIncome({
       setCategoryNameError("");
       categoryNameRef.current.classList.remove("is-invalid");
     }
+
     if (description.trim() === "") {
       setIsSubmitting(false);
       setDescriptionError("Please say something about this record");
@@ -81,7 +83,10 @@ function AddNewIncome({
         description,
         amount,
         category: categoryName,
-        accountId,
+        accountId:
+          accountId !== "" && accountId !== null
+            ? accountId
+            : context.activeTab.id,
       },
       {
         headers: {

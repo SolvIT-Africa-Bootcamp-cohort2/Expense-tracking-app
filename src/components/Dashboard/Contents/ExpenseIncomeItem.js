@@ -17,7 +17,13 @@ function ExpenseIncomeItem({
           {expense.type == "income" ? (
             <tr className="income-row">
               <td>
-                <span className="amount">+ {expense.amount} rwf</span>
+                <span className="amount">
+                  +
+                  {new Intl.NumberFormat("en-IN", {
+                    maximumSignificantDigits: 3,
+                  }).format(expense.amount)}
+                  &nbsp;Rwf
+                </span>
               </td>
               <td>
                 <span className="date">
@@ -60,7 +66,13 @@ function ExpenseIncomeItem({
           ) : (
             <tr className="expense-row">
               <td>
-                <span className="amount">- {expense.amount} Rwf</span>
+                <span className="amount">
+                  -{" "}
+                  {new Intl.NumberFormat("en-IN", {
+                    maximumSignificantDigits: 3,
+                  }).format(expense.amount)}
+                  &nbsp;Rwf
+                </span>
               </td>
               <td>
                 <span className="date">

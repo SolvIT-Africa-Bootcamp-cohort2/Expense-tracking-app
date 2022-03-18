@@ -11,12 +11,11 @@ import Axios from "axios";
 import { backendUrl } from "../../controller/Config";
 import MoneyAccounts from "../placeholders/MoneyAccounts";
 
-function Sidebar({}) {
+function Sidebar() {
   const context = useContext(UserMainContext);
   const [showSourceOfMoneyModal, setShowSourceOfMoneyModal] = useState(false);
   const [showIncomeMenus, setShowIncomeMenus] = useState(false);
   const [showExpenseMenus, setShowExpenseMenus] = useState(false);
-  const [moneyAccounts, setMoneyAccounts] = useState([]);
   const [isLoadingMoneyAccounts, setIsLoadingMoneyAccounts] = useState(true);
 
   const handleCloseSourceOfMoneyModal = () => setShowSourceOfMoneyModal(false);
@@ -33,7 +32,6 @@ function Sidebar({}) {
         .then((res) => {
           if (sub) {
             if (res.data.accounts) {
-              setMoneyAccounts(res.data.accounts);
               context.setMoneyAccounts(res.data.accounts);
             }
           }
@@ -70,12 +68,31 @@ function Sidebar({}) {
             <ul className="sidebar-items">
               <li
                 onClick={() => context.setActiveTab({ id: null, name: null })}
-                className={context.activeTab.name === null ? "active" : ""}
+                className={
+                  context.activeTab.name === null &&
+                  context.activeTab.id === null
+                    ? "active"
+                    : ""
+                }
               >
                 All accounts
               </li>
-              {moneyAccounts.map((account, id) => (
-                <li key={id}>{account.accountName}</li>
+              {context.moneyAccounts.map((account, id) => (
+                <li
+                  key={id}
+                  onClick={() => {
+                    context.setActiveTab({
+                      id: account._id,
+                      name: null,
+                    });
+                    context.setActiveAccountName(account.accountName);
+                  }}
+                  className={
+                    context.activeTab.id === account._id ? "active" : ""
+                  }
+                >
+                  {account.accountName}
+                </li>
               ))}
             </ul>
           </div>

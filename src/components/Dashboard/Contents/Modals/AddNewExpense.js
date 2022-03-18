@@ -81,7 +81,10 @@ function AddNewExpense({
         description,
         amount,
         category: categoryName,
-        accountId,
+        accountId:
+          accountId !== "" && accountId !== null
+            ? accountId
+            : context.activeTab.id,
       },
       {
         headers: {

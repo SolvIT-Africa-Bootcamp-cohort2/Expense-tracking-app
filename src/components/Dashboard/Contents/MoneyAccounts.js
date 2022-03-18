@@ -147,7 +147,7 @@ function MoneyAccounts() {
   };
 
   const getTransactions2 = () => {
-    if (context.activeTab.name === null) {
+    if (context.activeTab.name === null && context.activeTab.id === null) {
       //select from all accounts
       Axios.get(backendUrl + "/transaction", {
         headers: {
@@ -155,12 +155,41 @@ function MoneyAccounts() {
         },
       })
         .then((res) => {
-          console.log("result", res.data);
           if (!res.data.Message) {
             if (typeof res.data !== "string") {
               setExpensesAndIncome(res.data.transaction);
               calulateTotal(res.data.transaction);
             }
+            setIsLoadingAccountContents(false);
+          }
+        })
+        .catch((error) => {
+          setIsLoadingAccountContents(false);
+          console.log(error.response.data.Message);
+
+          try {
+            if (error.response.data.Message === "JWT token has expired") {
+              logout();
+            }
+          } catch (err) {
+            console.log(error.response);
+          }
+        });
+    } else if (context.activeTab.id !== null) {
+      Axios.get(backendUrl + "/transaction/" + context.activeTab.id, {
+        headers: {
+          Authorization: `Bearer ${context.token}`,
+        },
+      })
+        .then((res) => {
+          if (!res.data.Message) {
+            if (typeof res.data !== "string") {
+              setExpensesAndIncome(res.data.transaction);
+              calulateTotal(res.data.transaction);
+            }
+            setIsLoadingAccountContents(false);
+          } else {
+            setExpensesAndIncome([]);
             setIsLoadingAccountContents(false);
           }
         })
@@ -181,7 +210,8 @@ function MoneyAccounts() {
   };
 
   const getTransactions = () => {
-    if (context.activeTab.name === null) {
+    setIsLoadingAccountContents(true);
+    if (context.activeTab.name === null && context.activeTab.id === null) {
       //select from all accounts
       Axios.get(backendUrl + "/transaction", {
         headers: {
@@ -212,6 +242,38 @@ function MoneyAccounts() {
             console.log(error.response);
           }
         });
+    } else if (context.activeTab.id !== null) {
+      Axios.get(backendUrl + "/transaction/" + context.activeTab.id, {
+        headers: {
+          Authorization: `Bearer ${context.token}`,
+        },
+      })
+        .then((res) => {
+          console.log("result", res.data);
+          if (!res.data.Message) {
+            setTimeout(() => {
+              if (typeof res.data !== "string") {
+                setExpensesAndIncome(res.data.transaction);
+                calulateTotal(res.data.transaction);
+              }
+              setIsLoadingAccountContents(false);
+            }, 2000);
+          } else {
+            setExpensesAndIncome([]);
+            setIsLoadingAccountContents(false);
+          }
+        })
+        .catch((error) => {
+          setIsLoadingAccountContents(false);
+          console.log(error.response.data.Message);
+          try {
+            if (error.response.data.Message === "JWT token has expired") {
+              logout();
+            }
+          } catch (err) {
+            console.log(error.response);
+          }
+        });
     } else {
       setIsLoadingAccountContents(false);
     }
@@ -219,14 +281,18 @@ function MoneyAccounts() {
 
   useEffect(() => {
     getTransactions();
-  }, []);
+  }, [context.activeTab.id]);
   return (
     <div>
       {isLoadingAccountContents ? (
         <AccountHeader />
       ) : (
         <div className="header">
-          <h2>All accounts</h2>
+          <h2>
+            {context.activeTab.id === null && context.activeTab.name === null
+              ? "All accounts"
+              : context.activeAccountName}
+          </h2>
           <div className="filtering">
             <div className="date-filter-main-container"></div>
             <div className="filter-main-container">
@@ -257,13 +323,27 @@ function MoneyAccounts() {
                 ) : (
                   <>
                     <div className="account-balance-container">
-                      <h2>
-                        {new Intl.NumberFormat("en-IN", {
-                          maximumSignificantDigits: 3,
-                        }).format(total)}
-                        &nbsp;RWF
-                      </h2>
-                      <span>Total balance</span>
+                      {total >= 0 ? (
+                        <div className="total-income">
+                          <h2>
+                            {new Intl.NumberFormat("en-IN", {
+                              maximumSignificantDigits: 3,
+                            }).format(total)}
+                            &nbsp;RWF
+                          </h2>
+                          <span>Total balance</span>
+                        </div>
+                      ) : (
+                        <div className="total-expense">
+                          <h2>
+                            {new Intl.NumberFormat("en-IN", {
+                              maximumSignificantDigits: 3,
+                            }).format(total)}
+                            &nbsp;RWF
+                          </h2>
+                          <span>Total balance</span>
+                        </div>
+                      )}
                     </div>
                     <div className="expense-buttons-container">
                       <button onClick={() => setShowNewExpenseModal(true)}>
