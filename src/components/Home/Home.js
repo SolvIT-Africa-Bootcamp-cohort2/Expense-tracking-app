@@ -184,7 +184,6 @@ function Home() {
          </div>
          <br/>
          <br/>
-        {/* here is the problem  */}
          <div class="row">
           <div class="col-md-6">
           <h1> Spend smarter and <br></br>
@@ -327,16 +326,9 @@ function Home() {
                            
                            <div class="footer-items">
                             
-                               <h3 class="footer-title mb-2">Download</h3>
-                            
-                               <div class="button-group store-buttons store-black d-flex flex-wrap">
-                                   <a href="#">
-                                       <img src="assets/img/icon/google-play-black.png" alt="" />
-                                   </a>
-                                   <a href="#">
-                                       <img src="assets/img/icon/app-store-black.png" alt="" />
-                                   </a>
-                               </div>
+                               <h3 class="footer-title mb-2">Contact us</h3>
+                            <p>Tel: +250780000000</p>
+                            <p>Email:<a href='contactus@expense.com'>contactus@expense.com</a></p>
                            </div>
                        </div>
                    </div>
