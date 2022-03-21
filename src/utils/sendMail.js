@@ -2,7 +2,7 @@ import { createTransport } from "nodemailer";
 import{ red,green} from "chalk";
 const log = console.log
 
-const sendEmail = async (email,username, subject, text) => {
+const sendEmail = async (email,username, subject, message) => {
   try {
     const transporter = createTransport({
       service: "gmail",
@@ -21,7 +21,7 @@ const sendEmail = async (email,username, subject, text) => {
       <html><head><title>Verify Email</title>
       <h3>You're almost there! </h3>
       <p>Hi ${username}, Thank you  for creating account for Xpense Trackr.</p>
-
+      <button> <a href="${message}"> Verify Account </a>
       </div></body></html>`
     });
     log(green("email sent sucessfully"));
