@@ -32,6 +32,7 @@ function Sidebar() {
         .then((res) => {
           if (sub) {
             if (res.data.accounts) {
+              console.log(res.data.accounts);
               context.setMoneyAccounts(res.data.accounts);
             }
           }

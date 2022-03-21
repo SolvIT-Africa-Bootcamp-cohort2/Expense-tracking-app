@@ -38,6 +38,18 @@ function Incomes() {
     setTotal(total);
   };
 
+  const getAccountName = (accId) => {
+    let accName = "";
+    for (let i = 0; i < context.moneyAccounts.length; i++) {
+      if (context.moneyAccounts[i]._id === accId) {
+        accName = context.moneyAccounts[i].accountName;
+        break;
+      }
+    }
+
+    return accName;
+  };
+
   const deleteTransaction = () => {
     context.setProgressDeletion([
       ...context.progressDeletion,
