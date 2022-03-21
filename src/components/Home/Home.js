@@ -65,8 +65,8 @@ function Home() {
                                 <a class="nav-link scroll h4" href="#features">Features</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle h4" href="javascript:;" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Pages
+                                <a class="nav-link dropdown-toggle h4" href="/login" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   Login
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     {/* <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="javascript:;">Inner Pages<span class="badge badge-pill badge-warning ml-2">New</span></a>
@@ -117,39 +117,18 @@ function Home() {
                                             </li>
                                         </ul>
                                     </li> */}
-                                    <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="javascript:;">Accounts<span class="badge badge-pill badge-warning ml-2">New</span></a>
+                                    <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="javascript:;">Are you New<span class="badge badge-pill badge-warning ml-2">Here</span></a>
                                         <ul class="dropdown-menu">
-                                            <li>
-                                                <a class="dropdown-item" href="/login">Login</a>
-                                            </li>
+                                            
                                             <li>
                                                 <a class="dropdown-item" href="/register">Register</a>
                                             </li>
-                                            {/* <li>
-                                                <a class="dropdown-item" href="forgot.html">Reset Password</a>
-                                            </li> */}
+                                            
                                         </ul>
                                     </li>
-                                    {/* <li>
-                                        <a class="dropdown-item" href="reviews.html">Reviews</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="faq.html">FAQ</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="contact.html">Contact</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item disabled" href="#">More Coming Soon</a>
-                                    </li> */}
+                                
                                 </ul>
                             </li>
-                            {/* <li class="nav-item">
-                                <a class="nav-link scroll" href="#screenshots">Screenshots</a>
-                            </li> */}
-                            {/* <li class="nav-item">
-                                <a class="nav-link scroll" href="#pricing">Pricing</a>
-                            </li> */}
                             <li class="nav-item">
                                 <a class="nav-link scroll h4 "  href="#contact">Contact</a>
                             </li>
@@ -158,15 +137,19 @@ function Home() {
                 </div>
             </div>
         </header>
-    
-     <div class="row">
-        <div class="col-md-6">
+        <div className='body'>
+        <div class="row" style={{height:"100vh"}}>
+        <div class="col-md-9">
           <img className="photo1" src={require("../../assets/home1.png")} alt="home" /> 
         </div>
-        <div class="col-md-6"> 
+        <div class="col-md-3"> 
+         <div className='front-container'>
           <h1> Managing money.<br/>
             made simple.</h1>
+            </div>
+            <div className='register-container'>
             <a class="btn btn-primary bg-warning" href="/register" role="button">Register for free</a>
+            </div>
             </div>
      </div>
          <br/>
@@ -261,6 +244,7 @@ function Home() {
     </div>  
   </div>
   </div> */}
+  </div>
       
        <footer className='footer' class="footer-area">
            
