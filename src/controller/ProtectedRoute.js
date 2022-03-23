@@ -14,9 +14,10 @@ const ProtectedRoute = ({ children }) => {
     setToken(token);
     setLoading(false);
   };
+
   useEffect(() => {
     getToken();
-  }, []);
+  }, [loading]);
 
   return !loading && (token != null ? children : <Navigate to="/login" />);
 };
