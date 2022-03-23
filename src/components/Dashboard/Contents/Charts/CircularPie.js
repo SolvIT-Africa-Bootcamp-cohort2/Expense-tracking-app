@@ -42,19 +42,21 @@ function CircularPie({ isLoadingAccountContents, expensesAndIncome }) {
       let categoryNames = [];
 
       const transactions = [];
-      for (let i = 0; i < expensesAndIncome.length; i++) {
-        if (expensesAndIncome[i].type == "expense") {
-          transactions.push(expensesAndIncome[i]);
+      if (expensesAndIncome) {
+        for (let i = 0; i < expensesAndIncome.length; i++) {
+          if (expensesAndIncome[i].type == "expense") {
+            transactions.push(expensesAndIncome[i]);
+          }
         }
-      }
 
-      for (let i = 0; i < transactions.length; i++) {
-        if (categoryNames.indexOf(transactions[i].category) != -1) {
-          amount[categoryNames.indexOf(transactions[i].category)] +=
-            transactions[i].amount;
-        } else {
-          categoryNames.push(transactions[i].category);
-          amount.push(transactions[i].amount);
+        for (let i = 0; i < transactions.length; i++) {
+          if (categoryNames.indexOf(transactions[i].category) != -1) {
+            amount[categoryNames.indexOf(transactions[i].category)] +=
+              transactions[i].amount;
+          } else {
+            categoryNames.push(transactions[i].category);
+            amount.push(transactions[i].amount);
+          }
         }
       }
 

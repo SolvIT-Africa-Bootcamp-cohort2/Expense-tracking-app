@@ -36,14 +36,16 @@ function MoneyAccounts() {
     let totalIncome = 0;
     let totalExpense = 0;
     let total = 0;
-    for (let i = 0; i < expensesAndIncome.length; i++) {
-      if (
-        context.deletedTranscations.indexOf(expensesAndIncome[i]._id) === -1
-      ) {
-        if (expensesAndIncome[i].type === "income") {
-          totalIncome += expensesAndIncome[i].amount;
-        } else {
-          totalExpense += expensesAndIncome[i].amount;
+    if (expensesAndIncome) {
+      for (let i = 0; i < expensesAndIncome.length; i++) {
+        if (
+          context.deletedTranscations.indexOf(expensesAndIncome[i]._id) === -1
+        ) {
+          if (expensesAndIncome[i].type === "income") {
+            totalIncome += expensesAndIncome[i].amount;
+          } else {
+            totalExpense += expensesAndIncome[i].amount;
+          }
         }
       }
     }
