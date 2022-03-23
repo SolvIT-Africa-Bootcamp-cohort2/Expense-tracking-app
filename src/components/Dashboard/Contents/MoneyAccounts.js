@@ -377,7 +377,6 @@ function MoneyAccounts() {
                     deleteTransaction={deleteTransaction}
                     setTransactionToBeDeleted={setTransactionToBeDeleted}
                     setShowDeleteAlert={setShowDeleteAlert}
-                    getTransactions2={getTransactions2}
                   />
                 )}
               </div>

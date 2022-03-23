@@ -7,7 +7,6 @@ function ExpensesAndIncomeForAccount({
   expensesAndIncome,
   setTransactionToBeDeleted,
   setShowDeleteAlert,
-  getTransactions2,
 }) {
   return (
     <div>
@@ -21,7 +20,6 @@ function ExpensesAndIncomeForAccount({
                   expense={expense}
                   setTransactionToBeDeleted={setTransactionToBeDeleted}
                   setShowDeleteAlert={setShowDeleteAlert}
-                  getTransactions2={getTransactions2}
                 />
               ))}
             </tbody>

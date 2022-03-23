@@ -176,7 +176,7 @@ function Incomes() {
 
   useEffect(() => {
     getTransactions();
-  }, []);
+  }, [incomes]);
   return (
     <div>
       {incomes.length === 0 && isLoading === true ? (
