@@ -6,6 +6,7 @@ import ProtectedRoute from "./controller/ProtectedRoute";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import UserContext from "./context/UserContext";
+import Home from "./components/Home/Home";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route exact path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="home" element={<Home />}></Route>
           <Route
             path="/dashboard"
             element={

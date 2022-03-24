@@ -8,7 +8,9 @@ function TopBar() {
   return (
     <div className="topbar-main-container">
       <div>
-        <img src={require("../../../assets/logo.png")} />
+        <a href="/home">
+          <img src={require("../../../assets/logo.png")} />
+        </a>
       </div>
       <div className="user-profile-container">
         <div className="profile-image-container">
