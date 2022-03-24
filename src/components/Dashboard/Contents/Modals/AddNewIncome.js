@@ -98,6 +98,7 @@ function AddNewIncome({
         console.log(res.data);
         handleCloseNewIncomeModal();
         getTransactions2();
+        getTransactions2();
         setIsSubmitting(false);
       })
       .catch((error) => {
