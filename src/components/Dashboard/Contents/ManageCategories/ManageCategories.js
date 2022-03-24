@@ -4,9 +4,8 @@ import "../../../../styles/manageCategories.scss";
 import ManageCategoriesPlaceholders from "../../../placeholders/ManageCategoriesPlaceholders";
 import Axios from "axios";
 import { backendUrl } from "../../../../controller/Config";
-import { AiOutlineClose } from "react-icons/ai";
-import { FiEdit2 } from "react-icons/fi";
 import { Spinner } from "react-bootstrap";
+import CategoryItem from "./CategoryItem";
 
 function ManageCategories() {
   const context = useContext(UserMainContext);
@@ -16,6 +15,8 @@ function ManageCategories() {
   const [isSubmiting, setIsSubmitting] = useState(false);
   const [submissionError, setSubmissionError] = useState("");
   const [submissionSuccess, setSubmissionSuccess] = useState("");
+
+  const [showDeleteAlert, setShowDeleteAlert] = useState(false);
 
   const categoryNameRef = useRef(null);
 
@@ -152,23 +153,7 @@ function ManageCategories() {
                       {categories.length > 0 ? (
                         <>
                           {categories.map((category, id) => (
-                            <tr key={id}>
-                              <td className="w-100">
-                                <div className="py-2">
-                                  {category.categoryName}
-                                </div>
-                              </td>
-                              <td>
-                                <div className="delete-container">
-                                  <FiEdit2 size={20} color="blue" />
-                                </div>
-                              </td>
-                              <td>
-                                <div className="delete-container">
-                                  <AiOutlineClose size={20} color="red" />
-                                </div>
-                              </td>
-                            </tr>
+                            <CategoryItem key={id} category={category} />
                           ))}
                         </>
                       ) : (
