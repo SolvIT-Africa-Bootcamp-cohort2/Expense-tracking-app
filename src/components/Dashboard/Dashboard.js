@@ -11,14 +11,14 @@ import { backendUrl } from "../../controller/Config";
 function Dashboard() {
   const context = useContext(UserMainContext);
   useEffect(() => {
-    Axios.get(backendUrl + "/user", {
+    Axios.get(backendUrl + "/user/" + context.token, {
       headers: {
         Authorization: `Bearer ${context.token}`,
       },
     })
       .then((res) => {
-        console.log(res);
-        context.setUser(res.data.users[0]);
+        console.log("fsdfsd sdf", res.data.user);
+        context.setUser(res.data.user);
       })
       .catch((error) => {
         console.log(error);
