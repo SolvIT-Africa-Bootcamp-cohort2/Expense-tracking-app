@@ -22,7 +22,8 @@ const getUsers =async (req,res, next) =>{
 
 const getOneUser = async (req,res, next) =>{
     try {
-        res.status(200).send({user:req.user})
+        const user = await User.findOne({email:req.user["email"]})
+        res.status(200).send({user:user})
     } catch (error) {
         log(red(error))
         res.status(404).send({Message:"User Not Found"})
@@ -77,6 +78,7 @@ const verifyUser = async(req,res)=>{
         await Token.findByIdAndRemove(token._id);
     
         res.send({Message:"email verified sucessfully "});
+        res.redirect('https://react-expense-trackr.netlify.app/login');
       } catch (error) {
          // log(red(error))
         res.status(400).send({Message:" An error occured verifying your email "});
