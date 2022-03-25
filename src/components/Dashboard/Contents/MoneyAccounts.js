@@ -328,7 +328,7 @@ function MoneyAccounts() {
                       {total >= 0 ? (
                         <div className="total-income">
                           <h2>
-                            {new Intl.NumberFormat("en-IN", {
+                            {new Intl.NumberFormat("en", {
                               maximumSignificantDigits: 3,
                             }).format(total)}
                             &nbsp;RWF
@@ -338,7 +338,7 @@ function MoneyAccounts() {
                       ) : (
                         <div className="total-expense">
                           <h2>
-                            {new Intl.NumberFormat("en-IN", {
+                            {new Intl.NumberFormat("en", {
                               maximumSignificantDigits: 3,
                             }).format(total)}
                             &nbsp;RWF

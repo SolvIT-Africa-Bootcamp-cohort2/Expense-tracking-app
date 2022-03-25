@@ -221,7 +221,7 @@ function Incomes() {
               <hr />
               <h4 className="mt-3" style={{ fontSize: "18px" }}>
                 Total : &nbsp;&nbsp;
-                {new Intl.NumberFormat("en-IN", {
+                {new Intl.NumberFormat("en", {
                   maximumSignificantDigits: 3,
                 }).format(total)}
                 &nbsp;RWF

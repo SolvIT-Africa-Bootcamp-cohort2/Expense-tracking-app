@@ -161,7 +161,7 @@ export default class ExpenseIncomeItem extends Component {
                       {this.state.editAmount !== "" ? (
                         <span className="amount">
                           +
-                          {new Intl.NumberFormat("en-IN", {
+                          {new Intl.NumberFormat("en", {
                             maximumSignificantDigits: 3,
                           }).format(this.state.editAmount)}
                           &nbsp;Rwf
@@ -169,7 +169,7 @@ export default class ExpenseIncomeItem extends Component {
                       ) : (
                         <span className="amount">
                           +
-                          {new Intl.NumberFormat("en-IN", {
+                          {new Intl.NumberFormat("en", {
                             maximumSignificantDigits: 3,
                           }).format(this.props.expense.amount)}
                           &nbsp;Rwf
@@ -180,7 +180,6 @@ export default class ExpenseIncomeItem extends Component {
                 </td>
                 <td>
                   <span className="date">
-                    {/* {moment(expense.created_at).format("DD-MM-YYYY hh:mm:ss")} */}
                     {moment(this.props.expense.created_at).format("DD-MM-YYYY")}
                   </span>
                 </td>
@@ -335,7 +334,7 @@ export default class ExpenseIncomeItem extends Component {
                       {this.state.editAmount !== "" ? (
                         <span className="amount">
                           -
-                          {new Intl.NumberFormat("en-IN", {
+                          {new Intl.NumberFormat("en", {
                             maximumSignificantDigits: 3,
                           }).format(this.state.editAmount)}
                           &nbsp;Rwf
@@ -343,7 +342,7 @@ export default class ExpenseIncomeItem extends Component {
                       ) : (
                         <span className="amount">
                           -
-                          {new Intl.NumberFormat("en-IN", {
+                          {new Intl.NumberFormat("en", {
                             maximumSignificantDigits: 3,
                           }).format(this.props.expense.amount)}
                           &nbsp;Rwf
