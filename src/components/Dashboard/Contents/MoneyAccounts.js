@@ -284,6 +284,36 @@ function MoneyAccounts() {
   useEffect(() => {
     getTransactions();
   }, [context.activeTab.id]);
+
+  const compareCategoryAz = (a, b) => {
+    if (a.category < b.category) {
+      return -1;
+    }
+    if (a.category > b.category) {
+      return 1;
+    }
+    return 0;
+  };
+
+  const compareCategoryZa = (a, b) => {
+    if (b.category < a.category) {
+      return -1;
+    }
+    if (b.category > a.category) {
+      return 1;
+    }
+    return 0;
+  };
+
+  const handleFilter = (value) => {
+    if (value === "category-az") {
+      const res = expensesAndIncome.sort(compareCategoryAz);
+      setExpensesAndIncome([...res]);
+    } else if (value === "category-za") {
+      const res = expensesAndIncome.sort(compareCategoryZa);
+      setExpensesAndIncome([...res]);
+    }
+  };
   return (
     <div>
       {isLoadingAccountContents ? (
@@ -300,15 +330,14 @@ function MoneyAccounts() {
             <div className="filter-main-container">
               <div>Filter</div>
               <div>
-                <select>
-                  <option>Category A-Z</option>
-                  <option>Category Z-A</option>
-                  <option>Amount Low - High</option>
-                  <option>Amount Low - High</option>
-                  <option>Amount Low - High</option>
-                  <option>Amount High - Low</option>
-                  <option>Date ASC</option>
-                  <option>Date DESC</option>
+                <select onChange={(e) => handleFilter(e.target.value)}>
+                  <option value="">Choose</option>
+                  <option value="category-az">Category A-Z</option>
+                  <option value="category-za">Category Z-A</option>
+                  <option value="amount-lh">Amount Low - High</option>
+                  <option value="amount-hl">Amount Low - High</option>
+                  <option value="date-asc">Date ASC</option>
+                  <option value="date-desc">Date DESC</option>
                 </select>
               </div>
             </div>
