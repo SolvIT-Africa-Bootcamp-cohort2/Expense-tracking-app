@@ -91,7 +91,7 @@ const verifyUser = async (req, res) => {
     await User.findOneAndUpdate({ _id: user._id }, { isVerified: true });
     await Token.findByIdAndRemove(token._id);
 
-    res.send({ Message: "email verified sucessfully " });
+    // res.send({ Message: "email verified sucessfully " });
     res.redirect("https://react-expense-trackr.netlify.app/login");
   } catch (error) {
     // log(red(error))
