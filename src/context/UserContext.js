@@ -10,6 +10,7 @@ function UserContext({ children }) {
   const [progressDeletion, setProgressDeletion] = useState([]);
   const [deletedTranscations, setDeletedTransactions] = useState([]);
   const [activeAccountName, setActiveAccountName] = useState("");
+  const [user, setUser] = useState(null);
   return (
     <UserMainContext.Provider
       value={{
@@ -27,6 +28,8 @@ function UserContext({ children }) {
         setDeletedTransactions,
         activeAccountName,
         setActiveAccountName,
+        user,
+        setUser,
       }}
     >
       {children}
