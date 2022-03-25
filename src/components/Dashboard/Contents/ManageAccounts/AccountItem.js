@@ -1,15 +1,15 @@
 import React, { Component } from "react";
-import { Spinner } from "react-bootstrap";
 import { AiOutlineClose } from "react-icons/ai";
 import { FiEdit2 } from "react-icons/fi";
 import { UserMainContext } from "../../../../context/UserContext";
-import DeleteCategory from "../Modals/DeleteCategory";
+import DeleteAccount from "../Modals/DeleteAccount";
 import Axios from "axios";
 import { backendUrl } from "../../../../controller/Config";
+import { Spinner } from "react-bootstrap";
 import ContentEditable from "react-contenteditable";
 import { FaSave } from "react-icons/fa";
 
-export default class CategoryItem extends Component {
+export default class AccountItem extends Component {
   static contextType = UserMainContext;
   constructor() {
     super();
@@ -18,10 +18,10 @@ export default class CategoryItem extends Component {
       isDeleting: false,
       edit: false,
       isSubmitting: false,
-      editCategoryName: "",
+      editAccountName: "",
     };
 
-    this.editCategoryNameRef = React.createRef(null);
+    this.editAccountNameRef = React.createRef(null);
   }
 
   setEdit() {
@@ -32,22 +32,22 @@ export default class CategoryItem extends Component {
 
   handleCategoryChange = (e) => {
     this.setState((prevState) => {
-      return { ...prevState, editCategoryName: e.target.value };
+      return { ...prevState, editAccountName: e.target.value };
     });
   };
 
   handleEdit = () => {
-    if (this.state.editCategoryName == this.props.category.categoryName) {
+    if (this.state.editAccountName == this.props.account.accountName) {
       this.setEdit();
     } else {
       this.setState((prevState) => {
         return { ...prevState, isSubmitting: true };
       });
       Axios.post(
-        backendUrl + "/category/update",
+        backendUrl + "/accounts/update",
         {
-          id: this.props.category._id,
-          categoryName: this.state.editCategoryName,
+          id: this.props.account._id,
+          accountName: this.state.editAccountName,
         },
         {
           headers: {
@@ -57,6 +57,7 @@ export default class CategoryItem extends Component {
       )
         .then((res) => {
           console.log("response", res.data);
+          this.props.fetchAccounts();
           this.setState((prevState) => {
             return { ...prevState, isSubmitting: false };
           });
@@ -71,20 +72,20 @@ export default class CategoryItem extends Component {
     }
   };
 
-  deleteCategory = () => {
+  deleteAccount = () => {
     this.setState((prevState) => {
       return { ...prevState, isDeleting: true };
     });
     this.setShowDeleteAlert(false);
     this.context.setProgressDeletion([
       ...this.context.progressDeletion,
-      this.props.category._id,
+      this.props.account._id,
     ]);
 
     Axios.post(
-      backendUrl + "/category/remove",
+      backendUrl + "/accounts/remove",
       {
-        id: this.props.category._id,
+        id: this.props.account._id,
       },
       {
         headers: {
@@ -93,9 +94,10 @@ export default class CategoryItem extends Component {
       }
     )
       .then((res) => {
+        this.props.fetchAccounts();
         this.context.setDeletedTransactions([
           this.context.deletedTransactions,
-          this.props.category._id,
+          this.props.account._id,
         ]);
         console.log(this.context.deletedTransactions);
       })
@@ -117,7 +119,7 @@ export default class CategoryItem extends Component {
     this.setState((prevState) => {
       return {
         ...prevState,
-        editCategoryName: this.props.category.categoryName,
+        editAccountName: this.props.account.accountName,
       };
     });
   }
@@ -125,7 +127,7 @@ export default class CategoryItem extends Component {
   render() {
     return (
       <>
-        {this.context.deletedTranscations.indexOf(this.props.category._id) ==
+        {this.context.deletedTranscations.indexOf(this.props.account._id) ==
           -1 && (
           <>
             <tr>
@@ -133,10 +135,10 @@ export default class CategoryItem extends Component {
                 <div className="py-2">
                   {this.state.edit ? (
                     <ContentEditable
-                      html={`${this.state.editCategoryName}`}
+                      html={`${this.state.editAccountName}`}
                       disabled={this.state.isSubmitting}
                       onChange={this.handleCategoryChange}
-                      innerRef={this.editCategoryNameRef}
+                      innerRef={this.editAccountNameRef}
                       tagName="span"
                       style={{
                         padding: " 0.375rem 0.75rem",
@@ -151,9 +153,9 @@ export default class CategoryItem extends Component {
                     />
                   ) : (
                     <span>
-                      {this.editCategoryNameRef === ""
-                        ? this.props.category.categoryName
-                        : this.state.editCategoryName}
+                      {this.state.editAccountName === ""
+                        ? this.props.account.accountName
+                        : this.state.editAccountName}
                     </span>
                   )}
                 </div>
@@ -179,9 +181,9 @@ export default class CategoryItem extends Component {
                   </div>
                 )}
               </td>
-              <td>
+              <td className="px-3">
                 {this.context.progressDeletion.indexOf(
-                  this.props.category._id
+                  this.props.account._id
                 ) != -1 && this.state.isDeleting ? (
                   <div className="delete-container">
                     <Spinner animation="border" size="sm" role="status" />
@@ -197,8 +199,7 @@ export default class CategoryItem extends Component {
                           this.setState((prevState) => {
                             return {
                               ...prevState,
-                              editCategoryName:
-                                this.props.category.categoryName,
+                              editAccountName: this.props.account.accountName,
                             };
                           });
                         }}
@@ -221,8 +222,8 @@ export default class CategoryItem extends Component {
               </td>
             </tr>
 
-            <DeleteCategory
-              deleleteCategory={this.deleteCategory}
+            <DeleteAccount
+              deleteAccount={this.deleteAccount}
               showDeleteAlert={this.state.showDeleteAlert}
               setShowDeleteAlert={this.setShowDeleteAlert}
             />
