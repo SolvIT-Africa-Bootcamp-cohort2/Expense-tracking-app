@@ -142,7 +142,9 @@ function Register() {
         <div></div>
       </div>
       <div className="form-main-container">
-      <img src={require("../../assets/logo.png")} alt="logo" />
+        <a href="/">
+          <img src={require("../../assets/logo.png")} alt="logo" />
+        </a>
         <div className="form-container">
           <p>REGISTER</p>
           <form onSubmit={onSubmit} method="post">
