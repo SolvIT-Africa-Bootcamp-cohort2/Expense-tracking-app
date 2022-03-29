@@ -1,13 +1,12 @@
 const { Transaction } = require("../models/Transaction").default;
 import { queryIncludes } from "../utils/queryIncludes";
+import { isDeficit } from "../utils/expense.util";
 
 /**
- *
  *  Controller to get all Expense
  */
 const getExpenses = async (req, res, next) => {
   try {
-    console.log(queryIncludes(req.query, "accountId"));
     if (queryIncludes(req.query, "from")) {
       return getExpenseFromDate(req, res);
     } else if (queryIncludes(req.query, "accountId")) {
@@ -88,18 +87,21 @@ const getExpenseByAccount = async (req, res, next) => {
  */
 const addExpense = async (req, res, next) => {
   try {
-    const { description, amount, category, accountId } = req.body;
-
-    const newExpense = new Transaction({
-      description,
-      amount,
-      category,
-      userId: req.user["id"],
-      type: "expense",
-      accountId,
-    });
-    newExpense.save();
-    res.status(201).send({ Message: "Expense added successfully" });
+    const { description, amount, category, accountId, ignoreDeficit } =
+      req.body;
+    if (isDeficit(accountId))
+      return res.status(400).send({ Message: "You are in deficit" });
+    if (ignoreDeficit) {
+      const expense = await Transaction.create({
+        description,
+        amount,
+        category,
+        type: "expense",
+        userId: req.user["id"],
+        accountId,
+      });
+      res.status(201).send({ Message: "Expense added successfully", expense });
+    }
   } catch (error) {
     //console.log(chalk.red(error))
     res.status(500).send({ Message: "Error adding expense" });
@@ -107,7 +109,6 @@ const addExpense = async (req, res, next) => {
 };
 
 /**
- *
  *  Controller to update  Expense
  */
 
