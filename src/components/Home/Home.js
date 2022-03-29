@@ -1,15 +1,38 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "../../styles/home.scss";
-import { Nav, Navbar, Container } from "react-bootstrap";
 
 function Home() {
+  const navHeaderRef = useRef(null);
+  const logo1Ref = useRef(null);
+  const logo2Ref = useRef(null);
+  useEffect(() => {
+    window.addEventListener("scroll", (event) => {
+      if (window.scrollY > 500) {
+        navHeaderRef.current.classList.add("bg");
+        logo2Ref.current.classList.remove("d-none");
+        logo1Ref.current.classList.add("d-none");
+      } else {
+        navHeaderRef.current.classList.remove("bg");
+        logo1Ref.current.classList.remove("d-none");
+        logo2Ref.current.classList.add("d-none");
+      }
+    });
+  }, []);
+
   return (
     <div>
-      <div className="nav-main-container">
-        <div>
+      <div className="nav-main-container" ref={navHeaderRef}>
+        <div className="logo-container">
           <a href="/">
             <img
+              ref={logo1Ref}
               src={require("../../assets/logo.png")}
+              style={{ width: "100px" }}
+            />
+            <img
+              className="d-none"
+              ref={logo2Ref}
+              src={require("../../assets/logo2.png")}
               style={{ width: "100px" }}
             />
           </a>
@@ -68,7 +91,7 @@ function Home() {
           />
         </div>
       </div>
-      <div className="footer">Epense tracker &copy; 2022</div>
+      <div className="footer">Expense tracker &copy; 2022</div>
     </div>
   );
 }
