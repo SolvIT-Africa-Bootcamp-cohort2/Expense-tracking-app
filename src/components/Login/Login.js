@@ -85,7 +85,9 @@ function Login() {
         <div></div>
       </div>
       <div className="form-main-container">
-        <img src={require("../../assets/logo.png")} alt="logo" />
+        <a href="/">
+          <img src={require("../../assets/logo.png")} alt="logo" />
+        </a>
         <div className="form-container">
           <h2>Welcome to XPENSE</h2>
           <p>Login to continue</p>

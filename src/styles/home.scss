@@ -73,3 +73,27 @@
     right: 15rem;
   }
 }
+
+.decription-section {
+  height: 70vh;
+  @include flex-center;
+  background-color: #f2f2f2;
+  .text-center {
+    @include flex-center-column;
+    p {
+      max-width: 400px;
+      color: $textGray;
+    }
+    button {
+      background-color: $yellow;
+      color: $white;
+    }
+  }
+}
+
+.footer {
+  background-color: $blue;
+  padding: 3rem;
+  text-align: center;
+  color: $white;
+}

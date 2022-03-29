@@ -46,6 +46,29 @@ function Home() {
           <img src={require("../../assets/people1.png")} />
         </div>
       </section>
+      <section className="decription-section">
+        <div className="container">
+          <div className="text-center">
+            <h2>Spend Smarter And Save More</h2>
+            <p>
+              Expense tracking app brings together everything from spending,
+              balances, and budgetsto your credit score and more. Access your
+              financial life in one powerful App.
+            </p>
+            <p>Access your financial life in one powerful App.</p>
+            <button className="btn">Register For Free</button>
+          </div>
+        </div>
+      </section>
+      <div className="container">
+        <div className="py-5">
+          <img
+            src={require("../../assets/home1.png")}
+            style={{ width: "100%" }}
+          />
+        </div>
+      </div>
+      <div className="footer">Epense tracker &copy; 2022</div>
     </div>
   );
 }
